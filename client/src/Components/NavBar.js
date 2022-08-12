@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function NavBar() {
   return (
@@ -12,6 +12,12 @@ function NavBar() {
             </li>
             <li>
               <Link to="/new-post">New Post</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/sign-up">Sign Up</Link>
             </li>
           </ul>
         </nav>
