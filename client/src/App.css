@@ -92,3 +92,19 @@
 .forgot-password a {
   color: #167bff;
 }
+
+.login {
+  height: 200px;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    color: white
+}
+
+.sign-up {
+  color: white;
+  height: 200px;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}

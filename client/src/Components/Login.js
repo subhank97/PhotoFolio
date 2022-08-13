@@ -3,22 +3,21 @@ import React from 'react'
 function Login() {
 
     return (
+        <div className='login'>
         <form>
         <h3>Sign In</h3>
         <div className="mb-3">
-          <label>Email address</label>
           <input
             type="email"
             className="form-control"
-            placeholder="Enter email"
+            placeholder="Username"
           />
         </div>
         <div className="mb-3">
-          <label>Password</label>
           <input
             type="password"
             className="form-control"
-            placeholder="Enter password"
+            placeholder="Password"
           />
         </div>
         <div className="mb-3">
@@ -42,6 +41,7 @@ function Login() {
           Forgot <a href="#">password?</a>
         </p>
       </form>
+    </div>
   )
 }
 
