@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-// import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
-function Signup() {
+function Signup({updateUser}) {
     const [fullName, setFullName] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     function onSubmit(e) {
         e.preventDefault()
@@ -24,13 +24,13 @@ function Signup() {
             .then(res => {
                 if (res.ok) {
                     res.json().then(user => {
-                        console.log(user)
+                        updateUser(user)
+                        navigate('/profile')
                     })
                  }  
                  
                  else {
                     res.json().then(json => setErrors(Object.entries(json.errors)))
-                    console.log(errors)
                 }
             })
             setFullName('')
@@ -38,15 +38,11 @@ function Signup() {
             setPassword('')
          
     }
+    
 
     return (
         <div className="sign-up">
         <form onSubmit={onSubmit}>
-            <div className='error'>
-                {errors.map((err) => (
-                    <div key={err}>{err}</div>
-                ))}
-            </div>
             <h3>Sign Up</h3>
             <div className="mb-3">
                 <input
@@ -84,6 +80,9 @@ function Signup() {
                 Already registered <a href="/login">sign in?</a>
             </p>
         </form>
+        <div className='error'>
+        {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null}
+        </div>
         </div>
   )
 }

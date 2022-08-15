@@ -28,8 +28,10 @@ function PostPage() {
           />
           <Button variant="outline-success">Search</Button>
         </Form>
-      </div>
+      </div >
+      <div className='post-page'>
       <PostList posts={posts} />
+      </div>
     </div>
   )
 }
