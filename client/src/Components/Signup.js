@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 
-function Signup({updateUser}) {
+function Signup({ setUser }) {
     const [fullName, setFullName] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -9,9 +9,7 @@ function Signup({updateUser}) {
     const navigate = useNavigate()
 
     function onSubmit(e) {
-        e.preventDefault()
-     
-
+    e.preventDefault()
         fetch('/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -24,11 +22,10 @@ function Signup({updateUser}) {
             .then(res => {
                 if (res.ok) {
                     res.json().then(user => {
-                        updateUser(user)
+                        setUser(user)
                         navigate('/profile')
                     })
                  }  
-                 
                  else {
                     res.json().then(json => setErrors(Object.entries(json.errors)))
                 }

@@ -1,7 +1,9 @@
 import React from 'react'
 import NewPost from './NewPost'
 
-function Profile({ user, setUser }) {
+function Profile({ user, setUser, setPost}) {
+
+  console.log(user)
 
 function handleLogoutClick() {
   fetch("/logout", { 
@@ -23,7 +25,7 @@ function handleLogoutClick() {
         <br></br>
         <div>
           <h4>Create New Post</h4>
-        <NewPost />
+        <NewPost setPost={setPost} user={user} />
         </div>
     </div>
   )

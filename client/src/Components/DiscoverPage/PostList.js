@@ -5,7 +5,8 @@ function PostList({ posts }) {
 
   return (
     <ul className="list">
-      {posts.map((post) => {
+      {Array.isArray(posts) ? 
+      posts.map((post) => {
         return (
           <PostCard
             key={post.id}
@@ -13,7 +14,7 @@ function PostList({ posts }) {
             description={post.description}
           />
         );
-      })}
+      }) : null }
     </ul>
   )
 }

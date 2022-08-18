@@ -10,7 +10,7 @@ puts "🌱 Seeding spices..."
     User.create!(full_name: full_name, username: first_name, password: password)
 end 
 
-user_id= User.ids.sample
+5.times do 
 Post.create!(image: "https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&w=1000&q=80",
              description: "People say nothing is impossible, but I do nothing every day.",
              user_id: User.ids.sample)
@@ -41,6 +41,7 @@ Post.create!(image: "https://images.unsplash.com/photo-1534939268078-694e7b6d99b
 Post.create!(image: "https://images.pexels.com/photos/9304725/pexels-photo-9304725.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
              description: "Wine + dinner = winner",
              user_id: User.ids.sample)
+end 
 
 puts "✅ Done seeding!"
 

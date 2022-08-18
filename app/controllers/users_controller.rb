@@ -1,62 +1,42 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  skip_before_action :authorize, only: [:create]
 
-  def show 
-    user = User.find(params[:id])
-    render json: user, status: :ok
-  end 
+  def index
+    render json: User.all, status: :ok
+  end
 
   def create
     user = User.create!(user_params)
-        session[:user_id] = user.id 
-        render json: user, status: :ok
+    if user.valid?
+      session[:user_id] = user.id
+      render json: user, status: :created
+    else
+      render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
-  # GET /users
-  def index
-    @users = User.all
+  def update
+    user = User.update!(user_params_update)
+    render json: user, status: :accepted
+  end
+  
+  def show
+    user = User.find_by(id: session[:user_id])
+    if user
+      render json: user, status: :created
+    else
+      render json: {error: "Not Authorized"}, status: :unauthorized
+    end
+  end
+    
+private
 
-    render json: @users
+  def user_params
+    params.permit(:full_name, :username, :password)
   end
 
-  # # GET /users/1
-  # def show
-  #   render json: @user
-  # end
+  def user_params_update
+    params.permit(:image, :description)
+  end
 
-  # # POST /users
-  # def create
-  #   @user = User.new(user_params)
-
-  #   if @user.save
-  #     render json: @user, status: :created, location: @user
-  #   else
-  #     render json: @user.errors, status: :unprocessable_entity
-  #   end
-  # end
-
-  # # PATCH/PUT /users/1
-  # def update
-  #   if @user.update(user_params)
-  #     render json: @user
-  #   else
-  #     render json: @user.errors, status: :unprocessable_entity
-  #   end
-  # end
-
-  # # DELETE /users/1
-  # def destroy
-  #   @user.destroy
-  # end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.permit(:full_name, :username, :password)
-    end
 end

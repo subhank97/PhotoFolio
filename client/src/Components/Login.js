@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Login({ updateUser }) {
+function Login({ setUser }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
@@ -16,7 +16,7 @@ function Login({ updateUser }) {
         })
         .then(r => {
             if(r.ok) {
-                r.json().then(user => updateUser(user))
+                r.json().then(user => setUser(user))
                 navigate('/profile')
             } 
             else {
@@ -32,6 +32,7 @@ function Login({ updateUser }) {
   
         
     <div className='login'>
+        {errors ? errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null}
       <form onSubmit={handleSubmit}>
           <h3>Sign In</h3>
           <div className="mb-3">
@@ -69,8 +70,10 @@ function Login({ updateUser }) {
                   Submit
               </button>
           </div>
+          <p className="forgot-password text-right">
+            Don't have an account <a href="/sign-up">sign up?</a>
+        </p>
       </form>
-      {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null}
     </div>
   )
 }
