@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
-// import Detail from './Detail';
+import PostDetail from './PostDetail';
 
-function PostCard({ image, description }) {
+function PostCard({ image, description, user, id }) {
 
   const [openModal, setOpenModal] = useState(false)
 
   return (
   <div className='post-card'>
     <img className='post-image' src={image} alt='random' onClick={() => setOpenModal(true)}></img>
-    {/* <Detail  member={member} user={user} id={id} images={images} description={description} open={openModal} onClose={() => setOpenModal(false)}/> */}
+    <PostDetail id={id} user={user} image={image} description={description} open={openModal} onClose={() => setOpenModal(false)}/>
   </div>
   )
 }

@@ -4,8 +4,6 @@ import PostList from './PostList';
 
 function Profile({ user, setUser, posts, setPost}) {
 
-  console.log(posts)
-
 function handleLogoutClick() {
   fetch("/logout", { 
     method: "DELETE" 
@@ -32,7 +30,7 @@ function handleLogoutClick() {
         <br></br>
         <div>
           <h2>Your Posts</h2>
-          <PostList posts={posts} />
+          <PostList posts={posts} user={user}/>
         </div>
     </div>
   )

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import CommentCard from './CommentCard';
 
 function CommentForm({ id, user, setComments }){
 const [newComment, setNewComment] = useState("")
 const[errors, setErrors] = useState([])
 
-console.log(id)
 
 const handleSubmit = (e) => {
   e.preventDefault()
@@ -16,18 +15,19 @@ const handleSubmit = (e) => {
     },
     body: JSON.stringify({
       comment: newComment, 
-      post_id: id,
       user_id: user.id
     })
   }).then((res) => {
     if (res.ok) {
-    res.json().then((data) => setComments(data))
+    res.json().then((newComment) => setComments(newComment))
   } else {
     res.json().then((err) => setErrors(err.errors));
   }})
+  setNewComment("")
 }
 
-const comments = newComment.comment
+const comment = newComment
+console.log(newComment)
 
   return (
     <div className='comment-form'>
@@ -37,13 +37,20 @@ const comments = newComment.comment
                 type="text"
                 name="comment"
                 onChange={(e => setNewComment(e.target.value))} 
-                value={comments}
+                value={newComment}
                 placeholder="Add a comment..."
             /> {" "}
             <input type="submit" name="submit"  className="submit" />
             <br></br>
             <br></br>
-            <CommentCard comment={newComment} user={user}/>
+            <div className="comment-card">
+              <h5>
+                Comments:
+              </h5>
+              <p>
+                {comment ? comment : ""}
+              </p>
+            </div>
         </form>
     </div>
   )

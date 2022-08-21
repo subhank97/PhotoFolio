@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import List from "./List";
 
-function DiscoverPage() {
+function DiscoverPage({ user }) {
   const [data, setData] = useState({})
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function DiscoverPage() {
 
   return (
     <div className='post-page'>
-      <List data={data} />
+      <List data={data} user={user} />
     </div>
   )
 }

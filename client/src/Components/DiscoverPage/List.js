@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card';
 
-function List({ data }) {
+function List({ data, user }) {
 
   return (
   <ul className="list">
@@ -11,6 +11,7 @@ function List({ data }) {
     <Card
       key={item.id}
       item={item}
+      user={user}
     />
   );
 }) : null }

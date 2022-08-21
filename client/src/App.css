@@ -130,18 +130,6 @@ img {
   padding: 1rem 2rem;
 }
 
-.btnContainer {
-  width: 100px;
-  display: flex;
-  padding: 1rem 1rem;
-}
-.btnContainer button {
-  width: 100%;
-  margin: .5rem;
-  padding: 16px 0;
-  border: 1px solid #411b57;
-}
-
 .comments {
   position: fixed;
   width: fit-content;
@@ -161,4 +149,10 @@ img {
 
 .comment-card h5 {
   font-weight: bold;
+}
+
+.delete-button {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
 }

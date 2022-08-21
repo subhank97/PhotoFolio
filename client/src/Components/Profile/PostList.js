@@ -1,7 +1,7 @@
 import React from 'react'
 import PostCard from './PostCard';
 
-function PostList({ posts, user, data }) {
+function PostList({ posts, user }) {
 
   return (
   <ul className="list">
