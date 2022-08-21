@@ -19,10 +19,10 @@ function NavBar() {
       </NavLink>
       <Bars />
       <NavMenu>
-        <NavLink to="/profile" activestyle>
+        <NavLink to="/profile">
           Profile
         </NavLink>
-        <NavLink to="/sign-up" activestyle>
+        <NavLink to="/sign-up">
           Signup
         </NavLink>
         <NavBtn>

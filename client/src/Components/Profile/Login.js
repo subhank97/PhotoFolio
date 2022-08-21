@@ -18,6 +18,7 @@ function Login({ setUser }) {
             if(r.ok) {
                 r.json().then(user => setUser(user))
                 navigate('/profile')
+                window.location.reload(false)
             } 
             else {
                 r.json().then((err) => setErrors(err.errors))

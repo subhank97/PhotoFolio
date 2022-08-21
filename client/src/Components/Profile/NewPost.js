@@ -17,12 +17,13 @@ function NewPost({ setPost, user }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({image:image, description: description, 
+      body: JSON.stringify({
+        image:image, 
+        description: description, 
         user_id: user.id})
     }).then((res) => {
       if (res.ok) {
       res.json().then((data) => setPost(data))
-        navigate("/")
         window.location.reload(false)
     } else {
       res.json().then((err) => setErrors(err.errors));

@@ -1,9 +1,10 @@
 import React from 'react'
-import NewPost from './NewPost'
+import NewPost from './NewPost';
+import PostList from './PostList';
 
-function Profile({ user, setUser, setPost}) {
+function Profile({ user, setUser, posts, setPost}) {
 
-  console.log(user)
+  console.log(posts)
 
 function handleLogoutClick() {
   fetch("/logout", { 
@@ -12,6 +13,7 @@ function handleLogoutClick() {
       .then((r) => {
     if (r.ok) {
       setUser({});
+      window.location.reload(false)
     }
   });
 }
@@ -26,6 +28,11 @@ function handleLogoutClick() {
         <div>
           <h4>Create New Post</h4>
         <NewPost setPost={setPost} user={user} />
+        </div>
+        <br></br>
+        <div>
+          <h2>Your Posts</h2>
+          <PostList posts={posts} />
         </div>
     </div>
   )
