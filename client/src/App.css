@@ -151,8 +151,50 @@ img {
   font-weight: bold;
 }
 
-.delete-button {
+/* .edit-button{
   position: fixed;
   bottom: 8px;
   right: 8px;
+} */
+
+.update-button {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  width: min-content;
+}
+
+.create-post{
+  padding: 20px;
+  margin: 20px;
+}
+
+.your-posts h2{
+  text-align: center;
+}
+
+.post-list {
+  height: 20px;
+  width: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-auto-rows: auto;
+  grid-gap: 10px;
+  padding-left: 15%;
+  padding-top: 35px;
+}
+
+.image-form{
+  margin-bottom: 5px;
+}
+
+.display-comment {
+  margin: 0;
+  display: inline-block;
+}
+.delete-comment{
+  padding: 0;
+  border: none;
+  background: none;
+  margin-left: 5px;
 }

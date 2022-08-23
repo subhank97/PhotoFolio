@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :dummy_posts
   resources :comments
   resources :posts
   resources :users

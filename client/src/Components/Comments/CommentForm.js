@@ -1,37 +1,32 @@
 import React, { useState } from 'react'
 import CommentCard from './CommentCard';
 
-function CommentForm({ id, user, setComments }){
+function CommentForm({ id, user, comments, setComments }){
+  console.log(comments)
+
 const [newComment, setNewComment] = useState("")
-const[errors, setErrors] = useState([])
+const [change, setChange] = useState(false)
 
-
-const handleSubmit = (e) => {
+const addComment = (e) => {
   e.preventDefault()
-  fetch("/comments", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      comment: newComment, 
-      user_id: user.id
-    })
-  }).then((res) => {
-    if (res.ok) {
-    res.json().then((newComment) => setComments(newComment))
-  } else {
-    res.json().then((err) => setErrors(err.errors));
-  }})
-  setNewComment("")
+  fetch('/comments', {
+          method: 'POST',
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ 
+            comment: newComment, 
+            user_id: user.id
+      })
+      })
+  .then(res => res.json())
+  .then(newComment => setComments(newComment))
+  setNewComment()
 }
-
-const comment = newComment
-console.log(newComment)
 
   return (
     <div className='comment-form'>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={addComment}>
             <input
                 className='comment-input'
                 type="text"
@@ -43,14 +38,7 @@ console.log(newComment)
             <input type="submit" name="submit"  className="submit" />
             <br></br>
             <br></br>
-            <div className="comment-card">
-              <h5>
-                Comments:
-              </h5>
-              <p>
-                {comment ? comment : ""}
-              </p>
-            </div>
+            <CommentCard comments={comments} user={user} change={change} setChange={setChange}/>
         </form>
     </div>
   )

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function NewPost({ setPost, user }) {
+function NewPost({ setPosts, user }) {
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
@@ -20,7 +20,7 @@ function NewPost({ setPost, user }) {
         user_id: user.id})
     }).then((res) => {
       if (res.ok) {
-      res.json().then((data) => setPost(data))
+      res.json().then((data) => setPosts(data))
         window.location.reload(false)
     } else {
       res.json().then((err) => setErrors(err.errors));

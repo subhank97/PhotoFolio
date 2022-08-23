@@ -26,10 +26,10 @@ function HomePage() {
 
   return (
       <div>
-        <NavBar />
+        <NavBar user={user}/>
         <Routes>
-            <Route exact path="/" element={<DiscoverPage posts={posts} user={user} />} />
-            <Route exact path="/profile" element={<Profile  posts={posts} setPost={setPosts} setUser={setUser} user={user}/>} />
+            <Route exact path="/" element={<DiscoverPage user={user} />} />
+            <Route exact path="/profile" element={<Profile  posts={posts} setPosts={setPosts} setUser={setUser} user={user}/>} />
             <Route exact path="/login" element={<Login setUser={setUser}/>} />
             <Route exact path="/sign-up" element={<Signup setUser={setUser}/>} />
         </Routes>

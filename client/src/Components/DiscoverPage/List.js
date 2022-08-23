@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card';
 
-function List({ data, user }) {
+function List({ data, user, comments, setComments }) {
 
   return (
   <ul className="list">
@@ -10,8 +10,11 @@ function List({ data, user }) {
     return (
     <Card
       key={item.id}
+      id={item.id}
       item={item}
       user={user}
+      comments={comments}
+      setComments={setComments}
     />
   );
 }) : null }

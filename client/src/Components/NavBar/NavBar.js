@@ -10,7 +10,7 @@ import {
 import { ImInstagram } from 'react-icons/im';
 
 
-function NavBar() {
+function NavBar({ user }) {
   return (
     <>
     <Nav>
@@ -21,9 +21,6 @@ function NavBar() {
       <NavMenu>
         <NavLink to="/profile">
           Profile
-        </NavLink>
-        <NavLink to="/sign-up">
-          Signup
         </NavLink>
         <NavBtn>
           <NavBtnLink to="/login">Login</NavBtnLink>

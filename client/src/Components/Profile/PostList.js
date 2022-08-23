@@ -1,10 +1,10 @@
 import React from 'react'
 import PostCard from './PostCard';
 
-function PostList({ posts, user }) {
+function PostList({ posts, user, setPosts }) {
 
   return (
-  <ul className="list">
+  <ul className="post-list">
     {Array.isArray(posts) ? 
     posts.map((post) => {
         return (
@@ -14,6 +14,7 @@ function PostList({ posts, user }) {
                 image={post.image}
                 description={post.description}
                 user={user}
+                setPosts={setPosts}
                 />
                 );
                 }) : null }

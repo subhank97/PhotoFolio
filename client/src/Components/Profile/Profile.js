@@ -1,8 +1,9 @@
 import React from 'react'
 import NewPost from './NewPost';
 import PostList from './PostList';
+import Button from 'react-bootstrap/Button';
 
-function Profile({ user, setUser, posts, setPost}) {
+function Profile({ user, setUser, posts, setPosts}) {
 
 function handleLogoutClick() {
   fetch("/logout", { 
@@ -21,16 +22,16 @@ function handleLogoutClick() {
         <h1>
           {user && user.username ? `Welcome, ${user.full_name}!` : ""}
         </h1>
-        {user && user.username ?  <button onClick={handleLogoutClick}>Logout</button> : ""}
+        {user && user.username ?  <Button onClick={handleLogoutClick} variant="warning">Logout</Button> : ""}
         <br></br>
-        <div>
+        <div className='create-post'>
           <h4>Create New Post</h4>
-        <NewPost setPost={setPost} user={user} />
+        <NewPost setPosts={setPosts} user={user} />
         </div>
         <br></br>
-        <div>
+        <div className='your-posts'>
           <h2>Your Posts</h2>
-          <PostList posts={posts} user={user}/>
+          <PostList setPosts={setPosts} posts={posts} user={user}/>
         </div>
     </div>
   )
