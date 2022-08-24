@@ -1,14 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect } from 'react'
 import CommentForm from '../Comments/CommentForm'
 import Heart from "react-animated-heart";
 
 
-export default function Detail({ comments, setComments, member, open, onClose, images, description, id, user }) {
+export default function Detail({ getComments, setComments, id, member, open, onClose, images, 
+  description, user, comments, addComment }) {
 
   const [like, setLike] = useState(false)
 
     if(!open) return null
-    if(!comments) return null
 
   return (
     <div onClick={onClose} className='overlay'>
@@ -33,7 +33,8 @@ export default function Detail({ comments, setComments, member, open, onClose, i
           </div>
         </div>
         <div className="comments">
-        <CommentForm id={id} user={user} comments={comments} setComments={setComments}/>
+        <CommentForm setComments={setComments} id={id} user={user} comments={comments} 
+        addComment={addComment} getComments={getComments}/>
         </div>
       </div>
     </div>

@@ -7,30 +7,39 @@ import Signup from './Profile/Signup';
 import Profile from './Profile/Profile';
 
 function HomePage() {
-  const [posts, setPosts] = useState([])
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    fetch("/posts")
-    .then((res) => res.json())
-    .then((posts) => setPosts(posts))
-  }, [])
+  const [user, setUser] = useState({
+    "comments": [],
+    "full_name": "",
+    "id": "",
+    "password": "",
+    "posts": [],
+    "username": ""
+  });
+  const [posts, setPosts] = useState(user.posts)
 
   useEffect(() => {
     fetch('/me').then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => {
+          setUser(user)
+          setPosts(user.posts)
+        });
       }
     });
   }, []);  
+
+  function handleLogin(newUser){
+    setUser(newUser)
+    setPosts(newUser.posts)
+  }
 
   return (
       <div>
         <NavBar user={user}/>
         <Routes>
             <Route exact path="/" element={<DiscoverPage user={user} />} />
-            <Route exact path="/profile" element={<Profile  posts={posts} setPosts={setPosts} setUser={setUser} user={user}/>} />
-            <Route exact path="/login" element={<Login setUser={setUser}/>} />
+            <Route exact path="/profile" element={<Profile setUser={setUser} user={user} posts={posts} setPosts={setPosts}/>} />
+            <Route exact path="/login" element={<Login handleLogin={handleLogin}/>} />
             <Route exact path="/sign-up" element={<Signup setUser={setUser}/>} />
         </Routes>
       </div>

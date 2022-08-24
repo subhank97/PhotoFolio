@@ -15,7 +15,7 @@ function NavBar({ user }) {
     <>
     <Nav>
       <NavLink to="/">
-        <ImInstagram />
+        <ImInstagram size={50}/>
       </NavLink>
       <Bars />
       <NavMenu>

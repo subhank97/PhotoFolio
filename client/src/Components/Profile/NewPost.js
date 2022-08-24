@@ -2,31 +2,25 @@ import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function NewPost({ setPosts, user }) {
-  const [errors, setErrors] = useState([])
+function NewPost({ setPosts, user, addPosts }) {
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch("/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        image:image, 
-        description: description, 
-        user_id: user.id})
-    }).then((res) => {
-      if (res.ok) {
-      res.json().then((data) => setPosts(data))
-        window.location.reload(false)
-    } else {
-      res.json().then((err) => setErrors(err.errors));
-    }})
-    setImage()
-    setDescription()
+    fetch('/posts', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ 
+              image: image, 
+              description: description,
+              user_id: user.id
+        })
+        })
+    .then(res => res.json())
+    .then(res => addPosts(res))
   }
 
   return (

@@ -1,8 +1,8 @@
 import React from 'react'
 import Card from './Card';
 
-function List({ data, user, comments, setComments }) {
-
+function List({ data, user, comments, addComment, setComments, getComments}) {
+  console.log(comments)
   return (
   <ul className="list">
     {Array.isArray(data) ? 
@@ -13,8 +13,10 @@ function List({ data, user, comments, setComments }) {
       id={item.id}
       item={item}
       user={user}
-      comments={comments}
+      comments={Object.values(comments).filter(comment => comment.item_id === item.id)}
+      addComment={addComment}
       setComments={setComments}
+      getComments={getComments}
     />
   );
 }) : null }

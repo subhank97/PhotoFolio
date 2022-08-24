@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    head :no_content
+    render json: post
   end
 
 private

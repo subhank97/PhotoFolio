@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Login({ setUser }) {
+function Login({ handleLogin }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([])
@@ -16,9 +16,9 @@ function Login({ setUser }) {
         })
         .then(r => {
             if(r.ok) {
-                r.json().then(user => setUser(user))
+                r.json().then(user => handleLogin(user))
                 navigate('/profile')
-                window.location.reload(false)
+                //window.location.reload(false)
             } 
             else {
                 r.json().then((err) => setErrors(err.errors))

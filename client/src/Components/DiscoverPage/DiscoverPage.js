@@ -1,15 +1,24 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState, useEffect } from 'react'
+// import CommentForm from '../Comments/CommentForm';
 import List from "./List";
 
 function DiscoverPage({ user }) {
   const [data, setData] = useState({})
   const [comments, setComments] = useState([])
 
+  function addComment(newComment) {
+    setComments([...comments, newComment])
+  }
+
   useEffect(() => {
+    getComments()
+  }, [])
+
+  function getComments() {
     fetch("/comments")
     .then((res) => res.json())
-    .then((comments) => setComments(comments))
-  }, [])
+    .then((resp) => setComments(resp))
+  }
 
 
   useEffect(() => {
@@ -20,7 +29,8 @@ function DiscoverPage({ user }) {
 
   return (
     <div className='post-page'>
-      <List data={data} user={user} comments={comments} setComments={setComments}/>
+      <List data={data} user={user} comments={comments} addComment={addComment} 
+       setComments={setComments} getComments={getComments}/>
     </div>
   )
 }

@@ -32,8 +32,7 @@ function Signup({ setUser }) {
             })
             setFullName('')
             setUsername('')
-            setPassword('')
-         
+            setPassword('')    
     }
     
 

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  # before_action :set_comment, only: %i[ show update destroy ]
+  skip_before_action :authorize, only: [:create, :destroy]
 
   # GET /comments
   def index
@@ -14,13 +14,8 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
-
-    if @comment.save
-      render json: @comment, status: :created, location: @comment
-    else
-      render json: @comment.errors, status: :unprocessable_entity
-    end
+    comment = Comment.create!(comment_params)
+    render json: comment, status: :created
   end
 
   # PATCH/PUT /comments/1
@@ -32,7 +27,9 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   def destroy
-    @comment.destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    render json: comment
   end
 
   private
@@ -43,6 +40,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.permit(:user_id, :comment)
+      params.permit(:user_id, :comment, :item_id)
     end
 end

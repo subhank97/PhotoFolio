@@ -1,34 +1,17 @@
 import React, {useState} from 'react'
-// import Heart from "react-animated-heart";
 import Button from 'react-bootstrap/Button';
 
+export default function PostDetail({ open, onClose, image, description, user, id, setPosts, posts }) {
 
-
-export default function PostDetail({ open, onClose, image, description, user, id, setPosts }) {
-
-    function handleDelete(id){
-        fetch(`/posts/${id}`, { 
-          method: 'DELETE' 
-        })
-        .then(() => console.log())
-        window.location.reload(false)
-      }
-
-      // const handleUpdate = (e) => {
-      //   e.preventDefault()
-      //   fetch('/posts', {
-      //           method: 'PATCH',
-      //           headers: {
-      //               "Content-Type": "application/json"
-      //           },
-      //           body: JSON.stringify({ 
-      //             description: description, 
-      //             user_id: user.id
-      //       })
-      //       })
-      //   .then(res => res.json())
-      //   .then(post => setPosts(post))
-      // }
+  function handleDeletePost(id){
+    fetch(`/posts/${id}`, { 
+      method: 'DELETE' 
+    })
+    .then((resp) => resp.json())
+    .then(data=>{
+      setPosts(posts.filter(e=> e.id !== data.id))
+    })
+  }
 
     if(!open) return null
 
@@ -41,7 +24,7 @@ export default function PostDetail({ open, onClose, image, description, user, id
       className='modalContainer'
     >
       <img src={image} alt='/' />
-      <div className='modalRight'>
+      <div className='postModal'>
         <p className='closeBtn' onClick={onClose}>
           X
         </p>
@@ -50,8 +33,7 @@ export default function PostDetail({ open, onClose, image, description, user, id
           <p>{description}</p>
         </div>
           <div className='update-button'>
-            {/* <Button variant="outline-info" onClick={() => handleUpdate(id)}>Edit Post</Button> */}
-            <Button variant="outline-danger" onClick={() => handleDelete(id)}>Delete Post</Button>
+            <Button variant="outline-danger" onClick={() => handleDeletePost(id)}>Delete Post</Button>
         </div>
       </div>
     </div>
