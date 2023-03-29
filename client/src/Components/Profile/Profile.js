@@ -49,7 +49,7 @@ function Profile({ user, setUser, posts, setPosts }) {
         </div>)
         :
         (<div className='your-posts'>
-          <h2>No post to show</h2>
+          <h2>No Posts</h2>
         </div>)
       }
 

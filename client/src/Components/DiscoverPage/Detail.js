@@ -29,7 +29,7 @@ export default function Detail({ getComments, setComments, id, member, open, onC
         </div>
         <div className='btnContainer'>
           <div className='like'>
-            <Heart isClick={like} onClick={() => setLike(!like)} /> 
+            <Heart className="heart" isClick={like} onClick={() => setLike(!like)} /> 
           </div>
         </div>
         <div className="comments">

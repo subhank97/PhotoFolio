@@ -18,7 +18,6 @@ function Login({ handleLogin }) {
             if(r.ok) {
                 r.json().then(user => handleLogin(user))
                 navigate('/profile')
-                //window.location.reload(false)
             } 
             else {
                 r.json().then((err) => setErrors(err.errors))

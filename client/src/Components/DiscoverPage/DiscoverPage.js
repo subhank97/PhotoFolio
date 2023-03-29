@@ -16,23 +16,25 @@ function DiscoverPage({ user }) {
 
   function getComments() {
     fetch("/comments")
-    .then((res) => res.json())
-    .then((resp) => setComments(resp))
+      .then((res) => res.json())
+      .then((resp) => setComments(resp))
   }
 
 
   useEffect(() => {
     fetch(`https://api.unsplash.com/search/photos?page=1&per_page=100&query=random&client_id=${process.env.REACT_APP_API_KEY}`,)
-    .then((res) => res.json())
-    .then((data) => setData(data.results))
+      .then((res) => res.json())
+      .then((data) => setData(data.results))
   }, [])
 
   return (
-    <div className='post-page'>
-      <List data={data} user={user} comments={comments} addComment={addComment} 
-       setComments={setComments} getComments={getComments}/>
+    <div>
+      <div className='post-page'>
+        <List data={data} user={user} comments={comments} addComment={addComment}
+          setComments={setComments} getComments={getComments} />
+      </div>
     </div>
-  )
+  ) 
 }
 
 export default DiscoverPage;

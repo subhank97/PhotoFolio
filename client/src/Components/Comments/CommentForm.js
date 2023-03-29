@@ -48,6 +48,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
             onChange={(e => setNewComment(e.target.value))}
             value={newComment}
             placeholder="Add a comment..."
+            autoComplete="off"
           /> {" "}
           <input type="submit" name="submit" className="submit" />
         </form>

@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import { Routes, Route } from 'react-router-dom';
 import Login from './Profile/Login';
 import NavBar from './NavBar/NavBar';
 import DiscoverPage from './DiscoverPage/DiscoverPage';
 import Signup from './Profile/Signup';
 import Profile from './Profile/Profile';
+import ReactSwitch from 'react-switch'
+
+export const ThemeContext = createContext(null)
 
 function HomePage() {
+  const [theme, setTheme] = useState("light")
+
+const toggleTheme = () => {
+  setTheme((curr) => (curr === "light" ? "light" : "dark"))
+}
+
   const [user, setUser] = useState({
     "comments": [],
     "full_name": "",
@@ -34,7 +43,8 @@ function HomePage() {
   }
 
   return (
-      <div>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}> 
+      <div id={theme}>
         <NavBar user={user}/>
         <Routes>
             <Route exact path="/" element={<DiscoverPage user={user} />} />
@@ -42,7 +52,9 @@ function HomePage() {
             <Route exact path="/login" element={<Login handleLogin={handleLogin}/>} />
             <Route exact path="/sign-up" element={<Signup setUser={setUser}/>} />
         </Routes>
+        {/* <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} /> */}
       </div>
+      </ThemeContext.Provider>
   )
 }
 
