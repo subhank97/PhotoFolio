@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
 
+  get '/', to: 'root'
   
   get '/me', to: 'users#show'
 
