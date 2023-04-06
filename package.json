@@ -13,5 +13,8 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "mdb-react-ui-kit": "^1.6.0"
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^8.0.1"
   }
 }
