@@ -5,7 +5,6 @@ import NavBar from './NavBar/NavBar';
 import DiscoverPage from './DiscoverPage/DiscoverPage';
 import Signup from './Profile/Signup';
 import Profile from './Profile/Profile';
-import ReactSwitch from 'react-switch'
 
 export const ThemeContext = createContext(null)
 
