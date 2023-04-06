@@ -11,6 +11,6 @@
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
   "dependencies": {
-    "mdb-react-ui-kit": "^6.0.0"
+    "mdb-react-ui-kit": "^1.6.0"
   }
 }
