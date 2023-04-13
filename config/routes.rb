@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :dummy_posts
   resources :comments
   resources :posts
   resources :users
 
-  get '/', to: 'root'
+  root to: 'post#index'
   
   get '/me', to: 'users#show'
 
