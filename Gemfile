@@ -18,6 +18,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
+gem 'sprockets-rails'
+
 #faker gem
 gem 'faker'
 
