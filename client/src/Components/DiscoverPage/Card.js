@@ -5,9 +5,9 @@ function Card({ item, user, comments, addComment, id, setComments, getComments }
 
   const [openModal, setOpenModal] = useState(false)
 
-  const images = item.urls.regular
+  const images = item.download_url
   const description = item.description
-  const member = item.user.name
+  const member = item.author
 
   return (
   <div className='post-card'>

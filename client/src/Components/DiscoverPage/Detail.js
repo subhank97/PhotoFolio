@@ -23,7 +23,7 @@ export default function Detail({ getComments, setComments, id, member, open, onC
         <p className='closeBtn' onClick={onClose}>
           X
         </p>
-        <h4>{member}</h4>
+        <h4>{member} on Unsplash</h4>
         <div className='content'>
           <p>{description}</p>
         </div>
