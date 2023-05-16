@@ -18,8 +18,12 @@ class PostsController < ApplicationController
   end
   
   def create
-    post = Post.create!(post_params)
-    render json: post, status: :created
+    if session.include?(:user_id)
+      post = Post.create!(post_params)
+      render json: post, status: :created
+    else
+      render json: { error: 'Not authorized' }, status: :unauthorized
+    end
   end
 
   def destroy

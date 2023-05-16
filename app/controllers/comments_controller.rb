@@ -14,6 +14,11 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
+    if current_user.nil?
+      render json: { error: 'User not logged in' }, status: :unauthorized
+      return
+    end
+
     comment = Comment.create!(comment_params)
     render json: comment, status: :created
   end
@@ -33,13 +38,9 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    # def set_comment
-    #   @comment = Comment.find(params[:id])
-    # end
 
-    # Only allow a list of trusted parameters through.
-    def comment_params
-      params.permit(:user_id, :comment, :item_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def comment_params
+    params.permit(:user_id, :comment, :item_id)
+  end
 end
