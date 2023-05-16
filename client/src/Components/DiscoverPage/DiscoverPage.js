@@ -6,10 +6,13 @@ import axios from 'axios';
 
 function DiscoverPage({ user }) {
   const [data, setData] = useState([])
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState({});
 
   function addComment(newComment) {
-    setComments([...comments, newComment])
+    setComments((prevComments) => ({
+      ...prevComments,
+      [newComment.id]: newComment,
+    }));
   }
 
   useEffect(() => {

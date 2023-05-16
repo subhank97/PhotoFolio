@@ -1,27 +1,44 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function NewPost({ setPosts, user, addPosts }) {
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    fetch('/posts', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ 
-              image: image, 
-              description: description,
-              user_id: user.id
+    e.preventDefault();
+    if (user) {
+      fetch('/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          image: image,
+          description: description,
+          user_id: user.id,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error('Must be signed in');
+          }
         })
+        .then((res) => {
+          addPosts(res);
         })
-    .then(res => res.json())
-    .then(res => addPosts(res))
-  }
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    } else {
+      toast.error('You need to be logged in!');
+    }
+  };
 
   return (
     <div className="post-form">

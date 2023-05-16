@@ -2,7 +2,7 @@ import React from 'react'
 import Card from './Card';
 
 function List({ data, user, comments, addComment, setComments, getComments}) {
-  console.log(data)
+  //console.log(data)
   return (
   <ul className="list">
     {Array.isArray(data) ? 

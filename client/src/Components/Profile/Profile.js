@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import NewPost from './NewPost';
 import PostList from './PostList';
 import Button from 'react-bootstrap/Button';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Profile({ user, setUser, posts, setPosts }) {
   function addPosts(newPost) {
@@ -33,28 +35,34 @@ function Profile({ user, setUser, posts, setPosts }) {
   return (
     <div className='profile'>
       <h1>
-        {user && user.username ? `Welcome, ${user.full_name}!` : ""}
+        {user && user.username ? `Welcome, ${user.full_name}!` : ''}
       </h1>
-      {user && user.username ? <Button onClick={handleLogoutClick} variant="warning">Logout</Button> : ""}
+      {user && user.username ? (
+        <Button onClick={handleLogoutClick} variant='warning'>
+          Logout
+        </Button>
+      ) : (
+        ''
+      )}
       <br></br>
       <div className='create-post'>
         <h4>Create New Post</h4>
         <NewPost setPosts={setPosts} user={user} addPosts={addPosts} />
       </div>
       <br></br>
-      {user.posts.length > 0 ?
-        (<div className='your-posts'>
+      {user.posts.length > 0 ? (
+        <div className='your-posts'>
           <h2>Your Posts</h2>
           <PostList setPosts={setPosts} posts={posts} user={user} />
-        </div>)
-        :
-        (<div className='your-posts'>
+        </div>
+      ) : (
+        <div className='your-posts'>
           <h2>No Posts</h2>
-        </div>)
-      }
-
+        </div>
+      )}
+      <ToastContainer />
     </div>
-  )
+  );
 }
 
 export default Profile;
