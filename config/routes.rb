@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :comments
   resources :posts
   resources :users
+
+  root to: 'post#index'
   
   get '/me', to: 'users#show'
 
