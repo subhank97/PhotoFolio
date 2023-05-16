@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
 
-  root to: 'post#index'
+  root to: 'posts#index'
   
   get '/me', to: 'users#show'
 
