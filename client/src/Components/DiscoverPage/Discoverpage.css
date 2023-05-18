@@ -1,0 +1,120 @@
+.post-page {
+  width: 100%;
+}
+
+.list {
+  width: 100%;
+  display: grid;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.list img{
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #706f6f;
+  transition: all 1.5s ease;
+}
+
+.list img:hover {
+  box-shadow: 0 0 15px #515050;
+}
+
+.list .post-image {
+  padding: 4px;
+}
+
+.list .post-card {
+  transition: grid-row-start 300ms linear;
+  transition: transform 300ms ease;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.list .post-card:hover {
+  transform: scale(1.025);
+}
+
+.modalContainer {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  height: 500px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 8px;
+  display: flex;
+  padding: 20px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer img {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.modalRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 2rem;
+}
+
+.like {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+}
+
+@media (max-width: 768px) {
+  .modalContainer {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .modalContainer img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .modalRight {
+    padding-left: 0;
+  }
+
+  .closeBtn {
+    top: 10px;
+    right: 10px;
+  }
+}

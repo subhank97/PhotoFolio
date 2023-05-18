@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
-// import CommentForm from '../Comments/CommentForm';
-import List from "./List";
+import React, { useState, useEffect } from 'react';
+import List from './List';
 import axios from 'axios';
-
+import './Discoverpage.css'
 
 function DiscoverPage({ user }) {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const [comments, setComments] = useState({});
 
   function addComment(newComment) {
@@ -16,25 +15,19 @@ function DiscoverPage({ user }) {
   }
 
   useEffect(() => {
-    getComments()
-  }, [])
+    getComments();
+  }, []);
 
   function getComments() {
-    fetch("/comments")
+    fetch('/comments')
       .then((res) => res.json())
-      .then((resp) => setComments(resp))
+      .then((resp) => setComments(resp));
   }
 
-
-  // useEffect(() => {
-  //   fetch(`https://api.unsplash.com/search/photos?page=1&per_page=100&query=random&client_id=${process.env.REACT_APP_API_KEY}`,)
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data.results))
-  // }, [])
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://picsum.photos/v2/list?page=2&limit=50');
+        const response = await axios.get('https://picsum.photos/v2/list?page=3&limit=50');
         setData(response.data);
       } catch (error) {
         console.error(error);
@@ -43,16 +36,11 @@ function DiscoverPage({ user }) {
     fetchData();
   }, []);
 
-  //console.log(data)
-
   return (
-    <div>
-      <div className='post-page'>
-       <List data={data} user={user} comments={comments} addComment={addComment}
-          setComments={setComments} getComments={getComments} />
-      </div>
+    <div className="post-page">
+      <List data={data} user={user} comments={comments} addComment={addComment} setComments={setComments} getComments={getComments} />
     </div>
-  ) 
+  );
 }
 
 export default DiscoverPage;

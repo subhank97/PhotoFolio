@@ -1,26 +1,25 @@
-import React from 'react'
+import React from 'react';
 import Card from './Card';
 
-function List({ data, user, comments, addComment, setComments, getComments}) {
-  //console.log(data)
+function List({ data, user, comments, addComment, setComments, getComments }) {
   return (
-  <ul className="list">
-    {Array.isArray(data) ? 
-        data.map((item) => {
-    return (
-    <Card
-      key={item.id}
-      id={item.id}
-      item={item}
-      user={user}
-      comments={Object.values(comments).filter(comment => comment.item_id === item.id)}
-      addComment={addComment}
-      setComments={setComments}
-      getComments={getComments}
-    />
+    <div className="list">
+      {Array.isArray(data)
+        ? data.map((item) => (
+            <Card
+              key={item.id}
+              id={item.id}
+              item={item}
+              user={user}
+              comments={Object.values(comments).filter((comment) => comment.item_id === item.id)}
+              addComment={addComment}
+              setComments={setComments}
+              getComments={getComments}
+            />
+          ))
+        : null}
+    </div>
   );
-}) : null }
-</ul>
-)}
+}
 
 export default List;

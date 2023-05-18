@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 
 export default function PostDetail({ open, onClose, image, description, user, id, setPosts, posts }) {

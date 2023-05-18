@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import CommentCard from './CommentCard';
+import './Comment.css'
 
 function CommentForm({ id, user, comments, addComment, setComments, getComments }) {
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
+  const commentSectionRef = useRef(null);
+  const lastCommentRef = useRef(null);
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -34,6 +37,11 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
         addComment(newComment);
         setNewComment('');
         setError('');
+
+        // Scroll to the last comment
+        if (lastCommentRef.current) {
+          lastCommentRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
       })
       .catch((error) => {
         console.log('Error:', error);
@@ -41,13 +49,15 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
   };
 
   return (
-    <div className="comment-section">
+    <div className="comment-section" ref={commentSectionRef}>
       <h5>Comments:</h5>
       <div className="comment-card">
         <div>
-          {comments.map((comment) => {
+          {comments.map((comment, index) => {
+            const isLastComment = index === comments.length - 1;
+
             return (
-              <div key={comment.id}>
+              <div key={comment.id} ref={isLastComment ? lastCommentRef : null}>
                 <CommentCard
                   setComments={setComments}
                   id={comment.id}

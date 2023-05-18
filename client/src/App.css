@@ -1,207 +1,54 @@
-.post-page{
-  width: min-content;
-}
-
-.list {
-  height: 100%;
+.container{
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-template-columns: repeat(auto, 1fr);
-  grid-auto-rows: auto;
-  grid-gap: 10px;
+  padding-top: 16px;
 }
-
-.post-image {
-  height: 250px;
-  width: 250px;
-  border-radius: 25px
-}
-
-.post-card{
-  padding: 10px 10px;
-}
-
-.custom-control-label {
-  font-weight: 400;
-}
-
-.forgot-password,
-.forgot-password a {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7f7d7d;
-  margin: 0;
-}
-
-.forgot-password a {
-  color: #167bff;
-}
-
-.login {
-  height: 200px;
-  display: flex;
-  margin-top: 10%;
-  justify-content: center;
-}
-
-.sign-up {
-  height: 200px;
-  display: flex;
-  margin-top: 10%;
-  justify-content: center;
-}
-
-.form-control{
-  height: 100px;
-}
-
-.overlay {
-  position: fixed;
-  width: 100%;
-} 
-
-.modalContainer {
-  height: 500px;
-  width: 800px;
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
-  border-radius: 8px;
-}
-
-img {
-  width: 50%;
-  height: 100%;
-  object-fit: cover;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-}
-
-.modalRight {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  justify-content: space-between;
-}
-
-.closeBtn {
-  position: fixed;
-  top: 8px;
-  right: 8px;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  margin-top: 3rem;
-  padding: 1rem 2rem;
-}
-
-.like{
-  position: fixed;
-  bottom: 2px;
-  left: 2px;
-}
-
-.update-button {
-  position: fixed;
-  bottom: 8px;
-  right: 8px;
-  width: min-content;
-}
-
-.create-post{
-  padding: 20px;
-  margin: 20px;
-}
-
-.your-posts h2{
-  text-align: center;
-}
-
-.post-list {
-  height: 20px;
-  width: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-gap: 10px;
-  padding-top: 2%;
-  padding-left: 13%;
-  padding-right: 13%;
-}
-
-.image-form{
-  margin-bottom: 5px;
-}
-
-.display-comment {
-  margin: 0;
-  display: inline-block;
-}
-
-.delete-comment{
-  padding: 0;
-  border: none;
-  background: none;
-  margin-left: 5px;
-}
-
-
-.comment-section{
-  position: relative;
-  height: 200px;
-  width: 300px;
-  display: grid;
-  margin-left: 2px;
-  bottom: 2px;
-}
-
-.comment-section h5 {
-  font-weight: bold;
-}
-
-.comments {
-  position: relative;
-  padding-left: 5px;
-  width: 300px;
-}
-
-.comment-card {
-  font-weight: bold;
-  padding-top: 10px;
-  max-height: 220px;
-  overflow-y: scroll;
-}
-
-.comment-form {
-  bottom: 2px;
-}
-
-.postModal p{
-  text-align: center;
-  padding-left: 6%;
-}
-
-#light {
-  background-color: white;
-}
-
-#dark {
-  background-color: aqua;
-}
-
-.hidden {
-  display: none;
-}
-
-.show {
-  display: flex;
-}
+  
+  .update-button {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+  }
+  
+  .create-post {
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .your-posts h2 {
+    text-align: center;
+  }
+  
+  .post-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+    grid-gap: 10px;
+    padding-top: 2%;
+    padding-left: 13%;
+    padding-right: 13%;
+  }
+  
+  .image-form {
+    margin-bottom: 5px;
+  }
+  
+  .postModal p {
+    text-align: center;
+    padding-left: 6%;
+  }
+  
+  #light {
+    background-color: white;
+  }
+  
+  #dark {
+    background-color: aqua;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .show {
+    display: flex;
+  }
+  
