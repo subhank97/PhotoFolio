@@ -2,6 +2,22 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  
+  .comment-section h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .comment-section .comment-card {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 300px; /* Adjust the maximum height as needed */
   }
   
   .comment-card {
@@ -9,15 +25,17 @@
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
+  }
+  
+  .comment-card:last-child {
+    margin-bottom: 0;
   }
   
   .comment-card span {
     font-weight: bold;
   }
   
-  .delete-comment {
+  .comment-card .delete-comment {
     background-color: transparent;
     color: #e74c3c;
     border: none;
@@ -29,7 +47,7 @@
     margin-right: 8px;
   }
   
-  .delete-comment:hover {
+  .comment-card .delete-comment:hover {
     color: #c0392b;
   }
   
@@ -39,10 +57,11 @@
   
   .comment-form form {
     display: flex;
+    align-items: center;
   }
   
   .comment-form input[type="text"] {
-    flex: 1;
+    flex-grow: 1;
     border: none;
     border-radius: 4px;
     padding: 8px;
@@ -61,18 +80,5 @@
   
   .comment-form input[type="submit"]:hover {
     background-color: #2980b9;
-  }
-  
-  .comment-form div {
-    color: #e74c3c;
-    margin-top: 8px;
-  }
-  
-  .comment-section .comment-card:last-child {
-    margin-bottom: 0;
-  }
-  
-  .comment-section .comment-card:last-child .delete-comment {
-    margin-left: auto;
   }
   

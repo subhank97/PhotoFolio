@@ -24,10 +24,10 @@ export default function Detail({ getComments, setComments, id, member, open, onC
           </div>
         </div>
         <div className="comments">
+          {/* <h5>Comments:</h5> */}
           <CommentForm setComments={setComments} id={id} user={user} comments={comments} addComment={addComment} getComments={getComments} />
         </div>
       </div>
     </Modal>
   );
 }
-

@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import CommentCard from './CommentCard';
-import './Comment.css'
+import './Comment.css';
 
 function CommentForm({ id, user, comments, addComment, setComments, getComments }) {
   const [newComment, setNewComment] = useState('');
@@ -48,26 +48,28 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
       });
   };
 
-  return (
-    <div className="comment-section" ref={commentSectionRef}>
-      <h5>Comments:</h5>
-      <div className="comment-card">
-        <div>
-          {comments.map((comment, index) => {
-            const isLastComment = index === comments.length - 1;
+  useEffect(() => {
+    if (commentSectionRef.current) {
+      commentSectionRef.current.scrollTop = commentSectionRef.current.scrollHeight;
+    }
+  }, [comments]);
 
-            return (
-              <div key={comment.id} ref={isLastComment ? lastCommentRef : null}>
-                <CommentCard
-                  setComments={setComments}
-                  id={comment.id}
-                  comment={comment.comment}
-                  user={comment.user.full_name}
-                  comments={comments}
-                />
-              </div>
-            );
-          })}
+  return (
+    <div className="comment-section">
+      <h5>Comments:</h5>
+      <div className="comment-card" ref={commentSectionRef}>
+        <div>
+          {comments.map((comment, index) => (
+            <div key={comment.id} ref={index === comments.length - 1 ? lastCommentRef : null}>
+              <CommentCard
+                setComments={setComments}
+                id={comment.id}
+                comment={comment.comment}
+                user={comment.user.full_name}
+                comments={comments}
+              />
+            </div>
+          ))}
         </div>
       </div>
       <div className="comment-form">
@@ -80,8 +82,8 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
             value={newComment}
             placeholder="Add a comment..."
             autoComplete="off"
-          />{' '}
-          <input type="submit" name="submit" className="submit" />
+          />
+          <input type="submit" name="submit" className="submit" value="Post" />
         </form>
       </div>
     </div>
