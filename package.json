@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
-    "mdb-react-ui-kit": "^1.6.0"
+    "mdb-react-ui-kit": "^1.6.0",
+    "react-router-dom": "^6.11.2"
   },
   "devDependencies": {
     "dotenv-webpack": "^8.0.1"

@@ -1,56 +1,28 @@
-import React from 'react'
+import React from 'react';
 import NewPost from './NewPost';
 import PostList from './PostList';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Profile({ user, setUser, posts, setPosts }) {
-  function addPosts(newPost) {
-    setPosts([...posts, newPost])
-  }
 
-  const navigate = useNavigate()
-
-  function handleLogoutClick() {
-    fetch("/logout", {
-      method: "DELETE"
-    })
-      .then((r) => {
-        if (r.ok) {
-          setUser({
-            "comments": [],
-            "full_name": "",
-            "id": "",
-            "password": "",
-            "posts": [],
-            "username": ""
-          });
-          navigate("/login")
-        }
-      });
+  if (!user) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div className='profile'>
       <h1>
-        {user && user.username ? `Welcome, ${user.full_name}!` : ''}
+        {user.username ? `Welcome, ${user.full_name}!` : ''}
       </h1>
-      {user && user.username ? (
-        <Button onClick={handleLogoutClick} variant='warning'>
-          Logout
-        </Button>
-      ) : (
-        ''
-      )}
       <br></br>
       <div className='create-post'>
         <h4>Create New Post</h4>
-        <NewPost setPosts={setPosts} user={user} addPosts={addPosts} />
+        <NewPost setPosts={setPosts} user={user} posts={posts} />
       </div>
       <br></br>
-      {user.posts.length > 0 ? (
+      {posts && posts.length > 0 ? (
         <div className='your-posts'>
           <h2>Your Posts</h2>
           <PostList setPosts={setPosts} posts={posts} user={user} />
