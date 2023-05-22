@@ -1,31 +1,29 @@
-import React from 'react'
+import React from 'react';
 import PostCard from './PostCard';
 
 function PostList({ posts, user, setPosts }) {
+  const userPosts = posts.filter((post) => post.user_id === user.id); 
 
   return (
     <div>
-      {user ?
-        <ul className="post-list">
-          {posts.map((post) => {
-            return (
-              <PostCard
-                key={post.id}
-                id={post.id}
-                image={post.image}
-                description={post.description}
-                posts={posts.filter(post => post.user_id === user.id)}
-                user={user}
-                setPosts={setPosts}
-              />
-            );
-          })}
+      {userPosts.length > 0 ? ( 
+        <ul className='post-list'>
+          {userPosts.map((post) => (
+            <PostCard
+              key={post.id}
+              id={post.id}
+              image={post.image}
+              description={post.description}
+              user={user}
+              setPosts={setPosts}
+            />
+          ))}
         </ul>
-        :
-        null
-      }
+      ) : (
+        <p>No posts yet.</p>
+      )}
     </div>
-  )
+  );
 }
 
 export default PostList;
