@@ -2,8 +2,10 @@ class PostsController < ApplicationController
   skip_before_action :authorize, only: [:create]
 
   def index
-    post = Post.all
-    render json: post.to_json(include: :user), status: :ok
+    posts = Post.all.map do |post|
+      post.attributes.merge(image_url: post.image_url)
+    end
+    render json: posts.to_json(include: :user), status: :ok
   end
   
   def show

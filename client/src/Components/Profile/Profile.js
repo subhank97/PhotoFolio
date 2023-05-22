@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Profile.css'
 
 function Profile({ user, setUser }) {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([{}]);
 
   useEffect(() => {
     fetch('/posts')
@@ -33,6 +33,8 @@ function Profile({ user, setUser }) {
   if (!user) {
     return <div>Loading...</div>;
   }
+
+  console.log(posts)
 
   return (
     <div className='profile'>

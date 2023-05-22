@@ -16,9 +16,9 @@ export default function PostDetail({ open, onClose, image, description, user, id
 
   return (
     <Modal isOpen={open} onRequestClose={onClose} className='post-detail-modalContainer' overlayClassName='post-detail-overlay'>
-      <img src={image} alt='Post' />
+      <img src={image} alt='Post' /> 
       <div className='post-detail-modalRight'>
-        <button variant='light' className='post-detail-closeBtn' onClick={onClose}>
+        <button className='post-detail-closeBtn' onClick={onClose}>
           X
         </button>
         <div className='post-detail-content'>
@@ -26,7 +26,7 @@ export default function PostDetail({ open, onClose, image, description, user, id
           <p>{description}</p>
         </div>
         <div className='post-detail-update-button'>
-          <button variant='outline-danger' onClick={() => handleDeletePost(id)}>
+          <button onClick={() => handleDeletePost(id)}>
             Delete Post
           </button>
         </div>

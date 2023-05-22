@@ -29,7 +29,7 @@ function HomePage() {
   }
 
   return (
-    <ThemeContext.Provider>
+    <>
       <NavBar user={user} setUser={setUser} setPosts={setPosts} />
       <div className="container">
         <Routes>
@@ -43,7 +43,7 @@ function HomePage() {
           <Route exact path="/sign-up" element={<Signup setUser={setUser} />} />
         </Routes>
       </div>
-    </ThemeContext.Provider>
+    </>
   );
 }
 

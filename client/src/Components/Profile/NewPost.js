@@ -31,7 +31,7 @@ function NewPost({ user, updatePosts }) {
           }
         })
         .then((res) => {
-          updatePosts(); // Call the function to update posts in the parent component
+          updatePosts(); 
           setImageFile(null);
           setDescription('');
         })
