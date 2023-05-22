@@ -1,16 +1,80 @@
+/* DisoverPage */
 .post-page {
-  width: 100%;
-}
-
-.list {
-  width: 100%;
   display: grid;
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 10px;
 }
 
-.list img{
+/* PostList */
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* PostCard */
+.post-card {
+  position: relative;
+}
+
+.post-image {
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+}
+
+.post-card .post-image:hover {
+  opacity: 0.8;
+}
+
+.post-card .post-image:focus {
+  outline: none;
+}
+
+.post-card .post-image:active {
+  transform: scale(0.95);
+}
+
+.post-card .post-image::after {
+  content: '\f488';
+  font-family: 'Font Awesome 5 Free';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.post-card .post-image:hover::after {
+  opacity: 1;
+}
+
+.post-card .post-image:active::after {
+  opacity: 0.8;
+}
+
+.post-card .post-image:focus::after {
+  opacity: 0.8;
+}
+
+.post-card .post-image:active::after {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+
+/* .list {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 150px;
+  grid-auto-flow: row dense;
+} */
+
+/* .list img{
   max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 0 10px #706f6f;
@@ -21,19 +85,19 @@
   box-shadow: 0 0 15px #515050;
 }
 
-.list .post-image {
+.post-image {
   padding: 4px;
 }
 
-.list .post-card {
+.post-card {
   transition: grid-row-start 300ms linear;
   transition: transform 300ms ease;
   transition: all 0.5s ease;
   cursor: pointer;
 }
-.list .post-card:hover {
+.post-card:hover {
   transform: scale(1.025);
-}
+} */
 
 .modalContainer {
   position: relative;

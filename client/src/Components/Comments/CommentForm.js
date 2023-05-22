@@ -5,8 +5,11 @@ import './Comment.css';
 function CommentForm({ id, user, comments, addComment, setComments, getComments }) {
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
+  const [userNames, setUserNames] = useState({});
+
   const commentSectionRef = useRef(null);
   const lastCommentRef = useRef(null);
+
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -54,6 +57,23 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
     }
   }, [comments]);
 
+  useEffect(() => {
+    const fetchUserNames = async () => {
+      const uniqueUserIds = [...new Set(comments.map(comment => comment.user_id))];
+      const newUserNames = {};
+
+      for (let userId of uniqueUserIds) {
+        const response = await fetch(`/users/${userId}`);
+        const user = await response.json();
+        newUserNames[userId] = user.full_name;
+      }
+
+      setUserNames(newUserNames);
+    };
+
+    fetchUserNames();
+  }, [comments]);
+
   return (
     <div className="comment-section">
       <h5>Comments:</h5>
@@ -65,7 +85,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
                 setComments={setComments}
                 id={comment.id}
                 comment={comment.comment}
-                user={comment.user.full_name}
+                user={userNames[comment.user_id] || 'Unknown User'}
                 comments={comments}
               />
             </div>

@@ -7,6 +7,8 @@ import Heart from 'react-animated-heart';
 export default function Detail({ getComments, setComments, id, member, open, onClose, images, description, user, comments, addComment }) {
   const [like, setLike] = useState(false);
 
+  // console.log(user)
+
   return (
     <Modal isOpen={open} onRequestClose={onClose} contentLabel="Image Details" className="modalContainer" overlayClassName="overlay">
       <img src={images} alt="/" />

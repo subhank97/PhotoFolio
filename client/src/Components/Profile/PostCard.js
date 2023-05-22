@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PostDetail from './PostDetail';
 
-function PostCard({ image, description, user, id, setPosts, posts }) {
+function PostCard({ image, description, user, id, setPosts, posts, updatePosts }) {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -16,6 +16,7 @@ function PostCard({ image, description, user, id, setPosts, posts }) {
         onClose={() => setOpenModal(false)}
         setPosts={setPosts}
         posts={posts}
+        updatePosts={updatePosts}
       />
     </div>
   );

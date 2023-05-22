@@ -31,7 +31,7 @@ function NewPost({ user, updatePosts }) {
           }
         })
         .then((res) => {
-          updatePosts(); 
+          updatePosts();
           setImageFile(null);
           setDescription('');
         })
@@ -47,7 +47,10 @@ function NewPost({ user, updatePosts }) {
     <div className="post-form">
       <form onSubmit={handleSubmit}>
         <div className="image-form">
-          <input type="file" accept="image/*" onChange={handleFileChange} />
+          <input id="image-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
+          <label htmlFor="image-upload" className="upload-button">
+            <span>Upload Image</span>
+          </label>
         </div>
         <div className="article-description">
           <textarea

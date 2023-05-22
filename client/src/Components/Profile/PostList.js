@@ -1,10 +1,10 @@
 import React from 'react';
 import PostCard from './PostCard';
 
-function PostList({ posts, user, setPosts }) {
+function PostList({ posts, user, setPosts, updatePosts }) {
   const userPosts = posts.filter((post) => post.user_id === user.id);
 
-  console.log(posts)
+  // console.log(posts)
 
   return (
     <div>
@@ -18,6 +18,7 @@ function PostList({ posts, user, setPosts }) {
               description={post.description}
               user={user}
               setPosts={setPosts}
+              updatePosts={updatePosts}
             />
           ))}
         </ul>

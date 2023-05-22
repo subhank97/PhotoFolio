@@ -3,15 +3,16 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-export default function PostDetail({ open, onClose, image, description, user, id, setPosts, posts }) {
+export default function PostDetail({ open, onClose, image, description, user, id, setPosts, posts, updatePosts }) {
+  
   function handleDeletePost(id) {
     fetch(`/posts/${id}`, {
       method: 'DELETE',
     })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setPosts(posts.filter((e) => e.id !== data.id));
-      });
+    .then((resp) => resp.json())
+    .then((data) => {
+      updatePosts();
+    });
   }
 
   return (

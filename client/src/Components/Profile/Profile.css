@@ -1,100 +1,212 @@
 /* Profile Component */
 .profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .create-post {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
-  }
-  
-  /* NewPost Component */
-  .post-form {
-    margin-bottom: 20px;
-  }
-  
-  .image-form {
-    margin-bottom: 10px;
-  }
-  
-  /* PostList Component */
-  .post-list {
-    width: 100%;
-    display: grid;
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-  
-  /* PostCard Component */
+  width: 100%;
+  display: block;
+  align-items: center;
+}
+
+h1 {
+  font-size: 120px;
+  text-transform: uppercase;
+  font-family: 'Gambetta', serif;
+  letter-spacing: -3px;
+  transition: 700ms ease;
+  font-variation-settings: "wght" 311;
+  margin-bottom: 0.8rem;
+  color: rgb(0, 0, 0);
+  outline: none;
+  text-align: center;
+}
+
+h1:hover {
+  font-variation-settings: "wght" 582; 
+  letter-spacing: 1px;
+}
+
+.create-post {
+  width: 100%;
+  max-width: auto;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* NewPost Component */
+.post-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.post-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #6a64f1;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #0883f0;
+}
+
+.upload-button span {
+  display: block;
+}
+
+.upload-button:hover {
+  background-color: #5d59d8;
+}
+
+.image-form {
+  margin-bottom: 10px;
+}
+
+.image-form input[type="file"] {
+  display: none;
+}
+
+.image-form label {
+  content: 'Upload Image';
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.image-form label:hover {
+  background-color: #f0f0f0;
+}
+
+.article-description textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  resize: none;
+}
+
+/* PostList Component */
+.post-list {
+  display: flex;
+  gap: 20px;
+}
+
+/* PostCard Component */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-image {
+  width: 100px;
+  border-radius: 5px;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
   .post-card {
-    display: flex;
-    flex-direction: column;
+    width: 50%;
   }
-  
-  .post-image {
+}
+
+@media (max-width: 480px) {
+  .post-card {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    cursor: pointer;
   }
-  
-  /* PostDetail Component */
-  .post-detail-modalContainer {
-    position: relative;
-    width: 90%;
-    max-width: 900px;
-    height: 500px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 8px;
-    display: flex;
-    padding: 20px;
-    display: flex;
-  }
-  
-  .post-detail-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .post-detail-modalRight {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 4px;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  
-  .post-detail-closeBtn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 4px 8px;
-  }
-  
-  .post-detail-content {
-    margin-bottom: 20px;
-  }
-  
-  .post-detail-update-button {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
+}
+
+/* PostDetail Component */
+.post-detail-modalContainer {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  height: 500px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 8px;
+  display: flex;
+  padding: 20px;
+  display: flex;
+}
+
+.post-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-detail-modalRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.post-detail-closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+
+.post-detail-content {
+  margin-bottom: 20px;
+}
+
+.post-detail-update-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.article-form-button {
+  text-align: center;
+}
+
+.article-form-button button {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #3897f0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.article-form-button button:hover {
+  background-color: #0883f0;
+}
+
+.article-form-button button:disabled {
+  background-color: #b2dffc;
+  cursor: not-allowed;
+}
