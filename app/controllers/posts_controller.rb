@@ -2,10 +2,14 @@ class PostsController < ApplicationController
   skip_before_action :authorize, only: [:create]
 
   def index
-    posts = Post.all.map do |post|
-      post.attributes.merge(image_url: post.image_url)
+    if session[:user_id].nil?
+      render json: { error: 'Not Authorized' }, status: :unauthorized
+    else
+      posts = Post.where(user_id: session[:user_id]).map do |post|
+        post.attributes.merge(image_url: post.image_url)
+      end
+      render json: posts.to_json(include: :user), status: :ok
     end
-    render json: posts.to_json(include: :user), status: :ok
   end
   
   def show

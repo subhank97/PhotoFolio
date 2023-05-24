@@ -8,7 +8,6 @@ function Card({ item, user, comments, addComment, id, setComments, getComments }
   const description = item.description;
   const member = item.author;
 
-
   return (
     <div className="post-card">
       <img className="post-image" src={images} alt="random" onClick={() => setOpenModal(true)}></img>

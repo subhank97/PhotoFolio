@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function NewPost({ user, updatePosts }) {
+function NewPost({ user, setPosts }) {
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState('');
 
@@ -30,8 +30,9 @@ function NewPost({ user, updatePosts }) {
             throw new Error('Must be signed in');
           }
         })
-        .then((res) => {
-          updatePosts();
+        .then((newPost) => {
+          console.log(newPost);
+          setPosts((prevPosts) => [...prevPosts, newPost]);
           setImageFile(null);
           setDescription('');
         })
@@ -55,13 +56,13 @@ function NewPost({ user, updatePosts }) {
         <div className="article-description">
           <textarea
             rows={3}
-            placeholder="Description"
+            placeholder="Caption"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className="article-form-button">
-          <button type="submit">Create</button>
+          <button type="submit">Create a Post</button>
         </div>
       </form>
       <ToastContainer />
