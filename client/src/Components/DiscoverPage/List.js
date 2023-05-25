@@ -3,7 +3,7 @@ import Card from './Card';
 
 function List({ data, user, comments, addComment, setComments, getComments }) {
   return (
-    <div className="list">
+    <div className="ds-list">
       {Array.isArray(data)
         ? data.map((item) => (
             <Card

@@ -96,17 +96,27 @@
     transform: scaleX(1);
   }
   
-  @media screen and (max-width: 768px) {
+  @media only screen and (max-width: 600px) {
     .navbar {
-      justify-content: flex-start;
+      flex-direction: column;
+      height: auto;
+      padding: 1rem;
     }
   
     .navbar-logo {
-      display: none;
+      margin-bottom: 1rem;
     }
   
     .navbar-menu {
-      display: none;
+      flex-direction: column;
+    }
+  
+    .navbar-link {
+      padding: 0.5rem 0;
+    }
+  
+    .navbar-menu .navbar-link:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 1rem;
     }
   }
-  
