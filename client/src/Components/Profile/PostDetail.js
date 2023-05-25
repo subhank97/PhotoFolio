@@ -6,7 +6,7 @@ Modal.setAppElement('#root');
 export default function PostDetail({ open, onClose, image, description, user, id, setPosts }) {
 
   function handleDeletePost(id) {
-    fetch(`/posts/${id}`, {
+    fetch(`/users/${user.id}/posts/${id}`, {
       method: 'DELETE',
     })
       .then((resp) => resp.json())

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function NewPost({ user, setPosts }) {
+function NewPost({ user, setPosts, setProfilePosts }) {
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState('');
 
@@ -18,8 +18,8 @@ function NewPost({ user, setPosts }) {
       formData.append('image', imageFile);
       formData.append('description', description);
       formData.append('user_id', user.id);
-
-      fetch('/posts', {
+  
+      fetch(`/users/${user.id}/posts`, {
         method: 'POST',
         body: formData,
       })
@@ -35,6 +35,9 @@ function NewPost({ user, setPosts }) {
           setPosts((prevPosts) => [...prevPosts, newPost]);
           setImageFile(null);
           setDescription('');
+          if (setProfilePosts) {
+            setProfilePosts((prevPosts) => [...prevPosts, newPost]);
+          }
         })
         .catch((error) => {
           toast.error(error.message);
@@ -43,6 +46,7 @@ function NewPost({ user, setPosts }) {
       toast.error('Please select an image and be logged in.');
     }
   };
+  
 
   return (
     <div className="post-form">

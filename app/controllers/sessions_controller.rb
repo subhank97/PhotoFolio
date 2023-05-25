@@ -7,14 +7,14 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: user, status: :created
     else
-      render json: { errors: ['Invalid username or password.'] }, status: :unprocessable_entity
+      render json: {errors: ["Invalid Username or Password"]}, status: :unauthorized
     end
   end
 
   def destroy
     user = User.find_by(id: session[:user_id])
-    session.delete(:user_id)
-    head :no_content
+      session.delete :user_id
+      head :no_content
   end
-  
+
 end
