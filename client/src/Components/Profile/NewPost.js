@@ -32,11 +32,11 @@ function NewPost({ user, setPosts, setProfilePosts }) {
         })
         .then((newPost) => {
           console.log(newPost);
-          setPosts((prevPosts) => [...prevPosts, newPost]);
+          setPosts((prevPosts) => [newPost, ...prevPosts]);
           setImageFile(null);
           setDescription('');
           if (setProfilePosts) {
-            setProfilePosts((prevPosts) => [...prevPosts, newPost]);
+            setProfilePosts((prevPosts) => [newPost, ...prevPosts]);
           }
         })
         .catch((error) => {
