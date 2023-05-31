@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :posts
   end
 
-  root to: 'sessions#create'
+  root to: 'sessions#new'
   
   get '/me', to: 'users#show'
 
