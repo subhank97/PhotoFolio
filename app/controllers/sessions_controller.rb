@@ -2,7 +2,11 @@ class SessionsController < ApplicationController
   skip_before_action :authorize, only: [:create]
 
   def new
-    redirect_to '/login'
+    if current_user
+      redirect_to '/me'
+    else
+      render json: { message: 'Login form' }, status: :ok
+    end
   end
   
   def create

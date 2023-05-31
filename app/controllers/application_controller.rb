@@ -21,6 +21,6 @@ class ApplicationController < ActionController::API
   end
 
   def authorize
-    return render json: { error: 'Not authorized' }, status: :unauthorized unless session.key?(:user_id)
+    return render json: { error: 'Not authorized' }, status: :unauthorized unless current_user
   end
 end
