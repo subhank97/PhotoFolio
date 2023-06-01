@@ -20,6 +20,8 @@ gem 'devise', '~> 4.9', '>= 4.9.2'
 
 gem 'sprockets-rails'
 
+gem 'rack-cors', require: 'rack/cors'
+
 #faker gem
 gem 'faker'
 
