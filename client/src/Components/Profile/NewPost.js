@@ -19,7 +19,7 @@ function NewPost({ user, setPosts, setProfilePosts }) {
       formData.append('description', description);
       formData.append('user_id', user.id);
   
-      fetch(`/users/${user.id}/posts`, {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts`, {
         method: 'POST',
         body: formData,
       })

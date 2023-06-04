@@ -19,7 +19,7 @@ function DiscoverPage({ user }) {
   }, []);
 
   function getComments() {
-    fetch('/comments')
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/comments`)
       .then((res) => res.json())
       .then((resp) => setComments(resp));
   }

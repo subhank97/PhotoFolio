@@ -2,7 +2,7 @@ import React from 'react';
 
 function CommentCard({ comment, id, user, getComments, setComments, comments }) {
   function handleDeleteComment(id) {
-    fetch(`/comments/${id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`, {
       method: 'DELETE'
     })
       .then((resp) => resp.json())
