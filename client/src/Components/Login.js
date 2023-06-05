@@ -19,7 +19,7 @@ function Login({ handleLogin }) {
                 if (res.ok) {
                     res.json().then((user) => {
                         handleLogin(user);
-                        navigate(`${process.env.REACT_APP_BACKEND_URL}/profile`);
+                        navigate(`/profile`);
                     });
                 } else {
                     res.json().then((data) => {
