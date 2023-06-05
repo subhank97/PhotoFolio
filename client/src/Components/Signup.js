@@ -30,7 +30,7 @@ function Signup({ setUser }) {
         if (res.ok) {
           res.json().then((user) => {
             setUser(user);
-            navigate(`${process.env.REACT_APP_BACKEND_URL}/profile`);
+            navigate(`/profile`);
           });
         } else {
           res.json().then((json) => setError(json.error));
