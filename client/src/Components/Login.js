@@ -10,7 +10,7 @@ function Login({ handleLogin }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch('/login', {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: username, password: password }),
@@ -19,7 +19,7 @@ function Login({ handleLogin }) {
                 if (res.ok) {
                     res.json().then((user) => {
                         handleLogin(user);
-                        navigate('/profile');
+                        navigate(`${process.env.REACT_APP_BACKEND_URL}/profile`);
                     });
                 } else {
                     res.json().then((data) => {

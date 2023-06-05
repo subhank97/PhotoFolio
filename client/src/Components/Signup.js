@@ -17,7 +17,7 @@ function Signup({ setUser }) {
       return;
     }
 
-    fetch('/users', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -30,7 +30,7 @@ function Signup({ setUser }) {
         if (res.ok) {
           res.json().then((user) => {
             setUser(user);
-            navigate('/profile');
+            navigate(`${process.env.REACT_APP_BACKEND_URL}/profile`);
           });
         } else {
           res.json().then((json) => setError(json.error));
