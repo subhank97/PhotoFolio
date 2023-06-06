@@ -22,5 +22,13 @@ class ApplicationController < ActionController::API
 
   def authorize
     return render json: { error: 'Not authorized' }, status: :unauthorized unless current_user
+
+    if params[:user_id] && params[:user_id] != current_user.id
+      return render json: { error: 'Not authorized' }, status: :unauthorized
+    end
+  
+    if params[:id] && current_user.posts.find_by(id: params[:id]).nil?
+      return render json: { error: 'Not authorized' }, status: :unauthorized
+    end
   end
 end
