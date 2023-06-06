@@ -4,14 +4,22 @@ class PostsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     posts = user.posts.map do |post|
-      post.attributes.merge(image_url: post.image_url)
+      if post.image.attached?
+        post.attributes.merge(image_url: post.image_url)
+      else
+        post.attributes
+      end
     end
     render json: posts.to_json(include: :user), status: :ok
   end
 
   def show
     post = Post.find(params[:id])
-    render json: post.to_json(include: [:user]), status: :ok
+    if post.image.attached?
+      render json: post.attributes.merge(image_url: post.image_url).to_json(include: [:user]), status: :ok
+    else
+      render json: post.to_json(include: [:user]), status: :ok
+    end
   end
 
   def update
@@ -21,7 +29,7 @@ class PostsController < ApplicationController
   end
   
   def create
-    post = current_user.posts    .create!(post_params)
+    post = current_user.posts.create!(post_params)
     render json: post, status: :created
   end
 
@@ -34,6 +42,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:image, :description)
+    params.permit(:description).merge(image: params[:image])
   end
 end

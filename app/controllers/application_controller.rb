@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
+  before_action :set_current_user
+
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
@@ -15,8 +17,12 @@ class ApplicationController < ActionController::API
     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
+  def set_current_user
+    @current_user = User.find_by(id: session[:user_id])  # Or however you are identifying the current user
+  end
+
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    @current_user
   end
 
   def authorize
