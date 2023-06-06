@@ -1,46 +1,34 @@
 class CommentsController < ApplicationController
-  skip_before_action :authorize, only: [:create, :destroy]
-
-  # GET /comments
   def index
     @comments = Comment.all
-    render json: @comments
+    render json: @comments, status: :ok
   end
 
-  # GET /comments/1
   def show
-    render json: @comment
+    comment = Comment.find(params[:id])
+    render json: comment, status: :ok
   end
 
-  # POST /comments
   def create
-    if current_user.nil?
-      render json: { error: 'User not logged in' }, status: :unauthorized
-      return
-    end
-
-    comment = Comment.create!(comment_params)
+    comment = current_user.comments.create!(comment_params)
     render json: comment, status: :created
   end
 
-  # PATCH/PUT /comments/1
   def update
-    if @comment.update(comment_params)
-      render json: @comment
-    end
+    comment = current_user.comments.find(params[:id])
+    comment.update!(comment_params)
+    render json: comment, status: :accepted
   end
 
-  # DELETE /comments/1
   def destroy
-    comment = Comment.find(params[:id])
+    comment = current_user.comments.find(params[:id])
     comment.destroy
-    render json: comment
+    render json: comment, status: :ok
   end
 
   private
 
-  # Only allow a list of trusted parameters through.
   def comment_params
-    params.permit(:user_id, :comment, :item_id)
+    params.permit(:comment, :post_id)
   end
 end

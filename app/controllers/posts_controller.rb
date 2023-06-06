@@ -3,58 +3,37 @@ class PostsController < ApplicationController
 
   def index
     user = User.find(params[:user_id])
-    if user == current_user
-      posts = user.posts.map do |post|
-        post.attributes.merge(image_url: post.image_url)
-      end
-      render json: posts.to_json(include: :user), status: :ok
-    else
-      render json: { error: 'Not authorized' }, status: :unauthorized
+    posts = user.posts.map do |post|
+      post.attributes.merge(image_url: post.image_url)
     end
+    render json: posts.to_json(include: :user), status: :ok
   end
 
   def show
     post = Post.find(params[:id])
-    if post.user == current_user
-      render json: post.to_json(include: [:user]), status: :ok
-    else
-      render json: { error: 'Not authorized' }, status: :unauthorized
-    end
+    render json: post.to_json(include: [:user]), status: :ok
   end
 
   def update
-    post = Post.find(params[:id])
-    if post.user == current_user
-      post.update!(post_params)
-      render json: post.to_json(include: [:user]), status: :accepted
-    else
-      render json: { error: 'Not authorized' }, status: :unauthorized
-    end
+    post = current_user.posts.find(params[:id])
+    post.update!(post_params)
+    render json: post.to_json(include: [:user]), status: :accepted
   end
   
   def create
-    user = current_user
-    if user.nil?
-      render json: { error: 'User not logged in' }, status: :unauthorized
-      return
-    end
-    post = user.posts.create!(post_params)
+    post = current_user.posts    .create!(post_params)
     render json: post, status: :created
   end
 
   def destroy
-    post = Post.find(params[:id])
-    if post.user == current_user
-      post.destroy
-      render json: post
-    else
-      render json: { error: 'Not authorized' }, status: :unauthorized
-    end
+    post = current_user.posts.find(params[:id])
+    post.destroy
+    render json: post, status: :ok
   end
 
   private
 
   def post_params
-    params.permit(:image, :description, :user_id)
+    params.permit(:image, :description)
   end
 end
