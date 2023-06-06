@@ -12,8 +12,11 @@ function HomePage() {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
 
+  console.log(user)
+
   useEffect(() => {
     if (user) {
+      console.log(user)
       fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts`, {
         credentials: 'include'
       })
