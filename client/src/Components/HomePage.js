@@ -14,7 +14,7 @@ function HomePage() {
 
   useEffect(() => {
     if (user) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts`)
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/${user.id}/posts`)
         .then((res) => res.json())
         .then((data) => {
           setPosts(data);
