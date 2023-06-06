@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :authorize, only: [:index, :show]
+  before_action :authorize, only: [:create]
 
   def index
     user = User.find(params[:user_id])
@@ -40,6 +40,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def authorize
+    return render json: { error: 'Not authorized' }, status: :unauthorized unless current_user
+  end
 
   def post_params
     params.permit(:description).merge(image: params[:image])

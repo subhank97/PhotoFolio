@@ -47,6 +47,9 @@ function NewPost({ user, setPosts, setProfilePosts }) {
     }
   };
   
+  if (!user) {
+    return <div>Please log in to create a new post.</div>;
+  }
 
   return (
     <div className="post-form">
