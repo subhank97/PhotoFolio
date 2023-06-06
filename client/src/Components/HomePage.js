@@ -14,7 +14,9 @@ function HomePage() {
 
   useEffect(() => {
     if (user) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/${user.id}/posts`)
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${user.id}/posts`, {
+        credentials: 'include'
+      })
         .then((res) => res.json())
         .then((data) => {
           setPosts(data);
@@ -23,7 +25,7 @@ function HomePage() {
           console.error('Error fetching user posts:', error);
         });
     }
-  }, [user, posts]);
+  }, [user]);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/me`, {
