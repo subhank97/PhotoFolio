@@ -3,19 +3,17 @@ class ApplicationController < ActionController::API
   before_action :set_current_user
   before_action :authorize
 
-
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
-  before_action :authorize
 
   private
 
-  def render_not_found(invalid)
-    render json: { error: "#{invalid.model} not found" }, status: :not_found
+  def render_not_found(exception)
+    render json: { error: "#{exception.model} not found" }, status: :not_found
   end
 
-  def render_invalid(invalid)
-    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+  def render_invalid(exception)
+    render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
   end
 
   def set_current_user
@@ -23,10 +21,6 @@ class ApplicationController < ActionController::API
   end
 
   def authorize
-    return render json: { error: 'Not authorized' }, status: :unauthorized unless current_user
-  end
-
-  def authorize
-    return render json: { error: 'Not authorized' }, status: :unauthorized unless current_user
+    return render json: { error: 'Not authorized' }, status: :unauthorized unless @current_user
   end
 end

@@ -23,27 +23,23 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = current_user.posts.find(params[:id])
+    post = @current_user.posts.find(params[:id])
     post.update!(post_params)
     render json: post.to_json(include: [:user]), status: :accepted
   end
-  
+
   def create
-    post = current_user.posts.create!(post_params)
+    post = @current_user.posts.create!(post_params)
     render json: post, status: :created
   end
 
   def destroy
-    post = current_user.posts.find(params[:id])
+    post = @current_user.posts.find(params[:id])
     post.destroy
     render json: post, status: :ok
   end
 
   private
-
-  def authorize
-    return render json: { error: 'Not authorized' }, status: :unauthorized unless current_user
-  end
 
   def post_params
     params.permit(:description).merge(image: params[:image])
