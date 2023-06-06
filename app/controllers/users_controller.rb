@@ -11,14 +11,20 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       render json: user, status: :created
     else
-      render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
+  rescue ActiveRecord::RecordInvalid
+    render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
   end
 
   def update
     user = User.find(session[:user_id])
     user.update!(user_params_update)
     render json: user, status: :accepted
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'User not found' }, status: :not_found
+  rescue ActiveRecord::RecordInvalid
+    render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
   end
   
   def show
@@ -26,7 +32,7 @@ class UsersController < ApplicationController
     if user
       render json: user, status: :ok
     else
-      render json: {error: "Not Authorized"}, status: :unauthorized
+      render json: { error: 'Not authorized' }, status: :unauthorized
     end
   end
 
