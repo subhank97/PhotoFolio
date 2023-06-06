@@ -18,7 +18,7 @@ function NewPost({ user, setPosts, setProfilePosts }) {
       formData.append('image', imageFile);
       formData.append('description', description);
   
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/posts`, {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts`, {
         method: 'POST',
         body: formData,
         credentials: 'include',
