@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
   before_action :set_current_user
+  before_action :authorize
 
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
@@ -18,11 +19,11 @@ class ApplicationController < ActionController::API
   end
 
   def set_current_user
-    @current_user = User.find_by(id: session[:user_id])  # Or however you are identifying the current user
+    @current_user = User.find_by(id: session[:user_id])
   end
 
-  def current_user
-    @current_user
+  def authorize
+    return render json: { error: 'Not authorized' }, status: :unauthorized unless current_user
   end
 
   def authorize
