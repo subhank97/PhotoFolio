@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = @current_user.posts.find(params[:id])
+    post = current_user.posts.find(params[:id])
     post.update!(post_params)
     render json: post.to_json(include: [:user]), status: :accepted
   end
@@ -40,6 +40,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def authorize
+    return render json: { error: 'Not authorized' }, status: :unauthorized unless current_user
+  end  
 
   def post_params
     params.permit(:description).merge(image: params[:image])
