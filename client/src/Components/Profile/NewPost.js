@@ -17,11 +17,11 @@ function NewPost({ user, setPosts, setProfilePosts }) {
       const formData = new FormData();
       formData.append('image', imageFile);
       formData.append('description', description);
-      formData.append('user_id', user.id);
   
       fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts`, {
         method: 'POST',
         body: formData,
+        credentials: 'include',
       })
         .then((res) => {
           if (res.ok) {
