@@ -14,7 +14,7 @@ function HomePage() {
 
   useEffect(() => {
     if (user) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${user.id}/posts`, {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts`, {
         credentials: 'include'
       })
         .then((res) => res.json())
