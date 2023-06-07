@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  # before_action :authorize, only: [:create]
+  before_action :authorize, only: [:create, :update, :destroy]
 
   def index
     user = User.find(params[:user_id])
