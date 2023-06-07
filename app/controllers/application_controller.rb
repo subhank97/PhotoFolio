@@ -7,7 +7,14 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
   def authorize
-    return render json: { error: 'Not authorized' }, status: :unauthorized unless @current_user
+    puts "Authorizing user"
+    puts "session[:user_id]: #{session[:user_id]}"
+    unless current_user
+      puts "No current user found"
+      render json: { error: 'Not Authorized' }, status: 401
+    else
+      puts "Current user: #{current_user.id}"
+    end
   end
 
   private
