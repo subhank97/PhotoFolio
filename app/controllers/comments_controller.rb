@@ -2,11 +2,13 @@ class CommentsController < ApplicationController
   before_action :authorize, only: [:create, :update, :destroy]
 
   def index
+    authorize
     @comments = Comment.all
     render json: @comments, status: :ok
   end
 
   def show
+    authorize
     comment = Comment.find(params[:id])
     render json: comment, status: :ok
   rescue ActiveRecord::RecordNotFound
@@ -14,6 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    authorize
     comment = current_user.comments.create!(comment_params)
     render json: comment, status: :created
   rescue ActiveRecord::RecordInvalid
@@ -21,6 +24,7 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize
     comment = current_user.comments.find(params[:id])
     comment.update!(comment_params)
     render json: comment, status: :accepted
@@ -31,6 +35,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    authorize
     comment = current_user.comments.find(params[:id])
     comment.destroy
     render json: comment, status: :ok

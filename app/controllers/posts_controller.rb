@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_action :authorize, only: [:create, :update, :destroy]
+  # before_action :authorize, only: [:create, :update, :destroy]
 
   def index
+    authorize 
     user = User.find(params[:user_id])
     posts = user.posts.map do |post|
       if post.image.attached?
@@ -14,6 +15,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    authorize
     post = Post.find(params[:id])
     if post.image.attached?
       render json: post.attributes.merge(image_url: post.image_url).to_json(include: [:user]), status: :ok
@@ -25,6 +27,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    authorize
     post = current_user.posts.find(params[:id])
     post.update!(post_params)
     render json: post.to_json(include: [:user]), status: :accepted
@@ -35,6 +38,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    authorize
     post = current_user.posts.create!(post_params)
     render json: post, status: :created
   rescue ActiveRecord::RecordInvalid
@@ -42,6 +46,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize
     post = current_user.posts.find(params[:id])
     post.destroy
     render json: post, status: :ok
