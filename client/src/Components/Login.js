@@ -11,6 +11,7 @@ function Login({ handleLogin }) {
     function handleSubmit(e) {
         e.preventDefault();
         fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+            credentials: 'include',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: username, password: password }),

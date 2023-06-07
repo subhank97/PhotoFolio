@@ -18,6 +18,7 @@ function Signup({ setUser }) {
     }
 
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+      credentials: 'include',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

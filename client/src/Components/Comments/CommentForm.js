@@ -19,6 +19,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
     }
 
     fetch(`${process.env.REACT_APP_BACKEND_URL}/comments`, {
+      credentials: 'include',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
