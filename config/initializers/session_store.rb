@@ -1,1 +1,1 @@
-Rails.application.config.session_store :cookie_store, key: '_not_instagram_session', secure: Rails.env.production?
+Rails.application.config.session_store :cookie_store, key: 'PhotoFolio', secure: Rails.env.production?

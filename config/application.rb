@@ -32,12 +32,12 @@ module ReactRailsApiProjectTemplate
 
     # Use SameSite=Strict for all cookies to help protect against CSRF
     # https://owasp.org/www-community/SameSite
-    config.action_dispatch.cookies_same_site_protection = :strict
+    config.action_dispatch.cookies_same_site_protection = :lax
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
-    config.session_store :cookie_store, key: 'not-instagram', secure: Rails.env.production?
+    config.session_store :cookie_store, key: 'PhotoFolio', secure: Rails.env.production?
 
 
     # Configuration for the application, engines, and railties goes here.
