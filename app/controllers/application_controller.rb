@@ -5,6 +5,10 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
+  def authorize
+    return render json: { error: 'Not authorized' }, status: :unauthorized unless @current_user
+  end
+
   private
 
   def render_not_found(exception)
@@ -17,9 +21,5 @@ class ApplicationController < ActionController::API
 
   def set_current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-  end
-
-  def authorize
-    return render json: { error: 'Not authorized' }, status: :unauthorized unless @current_user
   end
 end
