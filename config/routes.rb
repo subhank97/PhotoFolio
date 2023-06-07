@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-  
-  resources :comments
   resources :users do
-    resources :posts
+    resources :posts, except: [:edit] do
+      resources :comments, except: [:edit]
+    end
   end
 
   root to: 'sessions#new'
-  
-  get '/me', to: 'users#show'
 
+  get '/me', to: 'users#show'
   post '/login', to: "sessions#create"
   delete '/logout', to: 'sessions#destroy'
 
