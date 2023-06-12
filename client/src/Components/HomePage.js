@@ -59,7 +59,7 @@ function HomePage() {
             path="/profile"
             element={
               user ? (
-                <Profile setUser={setUser} user={user} posts={posts} />
+                <Profile user={user} posts={posts} setPosts={setPosts} />
               ) : (
                 <div>Loading...</div>
               )

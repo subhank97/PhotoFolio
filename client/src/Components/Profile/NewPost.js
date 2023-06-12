@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function NewPost({ user, setPosts, setProfilePosts }) {
+function NewPost({ user, setProfilePosts }) {
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState('');
 
@@ -32,7 +32,7 @@ function NewPost({ user, setPosts, setProfilePosts }) {
         })
         .then((newPost) => {
           console.log(newPost);
-          setPosts((prevPosts) => [newPost, ...prevPosts]);
+          setProfilePosts((prevPosts) => [newPost, ...prevPosts]);
           setImageFile(null);
           setDescription('');
           if (setProfilePosts) {

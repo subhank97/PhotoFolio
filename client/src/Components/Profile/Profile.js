@@ -15,7 +15,7 @@ function Profile({ user, posts, setPosts }) {
       <h1>{user.full_name ? ` ${user.full_name}` : ''}</h1>
       <br />
       <div className="create-post">
-        <NewPost user={user} setPosts={setPosts} setProfilePosts={setPosts} />
+        <NewPost user={user} setProfilePosts={setPosts} />
       </div>
       <br />
       <div className="your-posts">
