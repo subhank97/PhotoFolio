@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*' # Allow all origins (temporarily)
+    origins 'https://pictogram-b63u.onrender.com'
 
     resource '*',
       headers: :any,
