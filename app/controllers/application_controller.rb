@@ -8,7 +8,6 @@ class ApplicationController < ActionController::API
 
   def authorize
     puts "Authorizing user"
-    puts "session[:user_id]: #{session[:user_id]}"
     unless current_user
       puts "No current user found"
       render json: { error: 'Not Authorized' }, status: 401
@@ -27,12 +26,11 @@ class ApplicationController < ActionController::API
     render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
   end
 
-
   def current_user
     @current_user
   end
 
   def set_current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 end
