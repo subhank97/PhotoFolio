@@ -19,9 +19,17 @@ function DiscoverPage({ user }) {
   }, []);
 
   function getComments() {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/comments`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/comments`, {
+      credentials: 'include',
+      headers: {
+        'Access-Control-Allow-Credentials': 'true'
+      }
+    })
       .then((res) => res.json())
-      .then((resp) => setComments(resp));
+      .then((resp) => setComments(resp))
+      .catch((error) => {
+        console.error('Error fetching comments:', error);
+      });
   }
 
   useEffect(() => {

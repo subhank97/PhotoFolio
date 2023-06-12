@@ -8,6 +8,9 @@ export default function PostDetail({ open, onClose, image, description, user, id
   function handleDeletePost(id) {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts/${id}`, {
       method: 'DELETE',
+      headers: {
+        'Access-Control-Allow-Credentials': 'true'
+      }
     })
       .then((resp) => resp.json())
       .then(() => {

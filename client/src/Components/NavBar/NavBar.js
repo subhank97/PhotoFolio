@@ -10,7 +10,10 @@ function NavBar({ user, setUser, setPosts }) {
   const handleLogoutClick = () => {
     setIsLoggingOut(true);
     fetch(`${process.env.REACT_APP_BACKEND_URL}/logout`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        'Access-Control-Allow-Credentials': 'true'
+      }
     })
       .then((response) => {
         if (response.ok) {

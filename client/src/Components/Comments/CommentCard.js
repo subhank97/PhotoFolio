@@ -4,6 +4,9 @@ function CommentCard({ comment, id, user, getComments, setComments, comments }) 
   function handleDeleteComment(id) {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`, {
       credentials: 'include',
+      headers: {
+        'Access-Control-Allow-Credentials': 'true'
+      },
       method: 'DELETE'
     })
       .then((resp) => resp.json())

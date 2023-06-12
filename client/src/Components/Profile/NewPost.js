@@ -22,6 +22,9 @@ function NewPost({ user, setProfilePosts }) {
         method: 'POST',
         body: formData,
         credentials: 'include',
+        headers: {
+          'Access-Control-Allow-Credentials': 'true'
+        }
       })
         .then((res) => {
           if (res.ok) {

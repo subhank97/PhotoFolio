@@ -20,7 +20,10 @@ function Signup({ setUser }) {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
       credentials: 'include',
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': 'true'
+      },
       body: JSON.stringify({
         full_name: fullName,
         username: username,

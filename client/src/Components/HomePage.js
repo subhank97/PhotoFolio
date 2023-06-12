@@ -16,7 +16,10 @@ function HomePage() {
   useEffect(() => {
     if (user) {
       fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts`, {
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+          'Access-Control-Allow-Credentials': 'true'
+        }
       })
         .then((res) => res.json())
         .then((data) => {
@@ -30,7 +33,10 @@ function HomePage() {
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/me`, {
-      credentials: 'include'
+      credentials: 'include',
+      headers: {
+        'Access-Control-Allow-Credentials': 'true'
+      }
     })
       .then((r) => {
         if (r.ok) {
