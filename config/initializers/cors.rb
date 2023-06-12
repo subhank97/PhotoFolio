@@ -13,7 +13,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       origins 'http://localhost:4000' # Frontend URL for development
     end
 
-    resource '*',
+    resource '*', # Change the resource to '*'
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
       credentials: true
