@@ -29,6 +29,9 @@ function HomePage() {
           console.error('Error fetching user posts:', error);
         });
     }
+    else {
+      console.log("No user")
+    }
   }, [user]);
 
   useEffect(() => {
