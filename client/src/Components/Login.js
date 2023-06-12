@@ -21,8 +21,10 @@ function Login({ handleLogin }) {
                     res.json().then((user) => {
                         handleLogin(user);
                         navigate(`/profile`);
+                        console.log(user)
                     });
                 } else {
+                    console.log(user)
                     res.json().then((data) => {
                         setErrors(data.errors || ['Invalid username or password.']);
                     });
@@ -31,6 +33,7 @@ function Login({ handleLogin }) {
             .catch((error) => {
                 console.error('Error:', error);
                 setErrors(['An unexpected error occurred.']);
+                console.log(user)
             });
     }
 
