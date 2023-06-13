@@ -31,6 +31,8 @@ class ApplicationController < ActionController::API
   end
 
   def set_current_user
+    puts "Session data: #{session.to_hash}"
     @current_user ||= User.find_by(id: session[:user_id])
   end
+  
 end
