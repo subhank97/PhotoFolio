@@ -7,22 +7,24 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
   def authorize
-    puts "Authorizing user"
+    Rails.logger.info "Authorizing user"
     unless current_user
-      puts "No current user found"
+      Rails.logger.warn "No current user found"
       render json: { error: 'Not Authorized' }, status: 401
     else
-      puts "Current user: #{current_user.id}"
+      Rails.logger.info "Current user: #{current_user.id}"
     end
   end
 
   private
 
   def render_not_found(exception)
+    Rails.logger.warn "#{exception.model} not found"
     render json: { error: "#{exception.model} not found" }, status: :not_found
   end
 
   def render_invalid(exception)
+    Rails.logger.warn "Record invalid: #{exception.record.errors.full_messages}"
     render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
   end
 
@@ -31,7 +33,7 @@ class ApplicationController < ActionController::API
   end
 
   def set_current_user
-    puts "Session data: #{session.to_hash}"
+    Rails.logger.debug "Session data: #{session.to_hash}"
     @current_user ||= User.find_by(id: session[:user_id])
   end
   

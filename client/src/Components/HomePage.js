@@ -15,7 +15,7 @@ function HomePage() {
 
   useEffect(() => {
     if (user) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts`, {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/posts`, {
         credentials: 'include',
         headers: {
           'Access-Control-Allow-Credentials': 'true'
@@ -35,7 +35,7 @@ function HomePage() {
   }, [user]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/me`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/current`, {
       credentials: 'include',
       headers: {
         'Access-Control-Allow-Credentials': 'true'

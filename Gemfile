@@ -18,7 +18,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'sprockets-rails'
 
-gem 'rack-cors', require: 'rack/cors'
+gem 'rack-cors'
 
 #faker gem
 gem 'faker'
