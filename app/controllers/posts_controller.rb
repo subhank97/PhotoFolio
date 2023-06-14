@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authorize
-  before_action :set_post, only: [:show, :update, :destroy]
+  # before_action :authorize
+  # before_action :set_post, only: [:show, :update, :destroy]
 
   def index
     Rails.logger.debug "Fetching all posts for current user: #{current_user.id}"
