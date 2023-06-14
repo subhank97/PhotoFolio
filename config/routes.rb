@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  resources :users do
-    resources :posts, except: [:edit]
-    resources :comments, except: [:edit]
-  end
+  resources :users 
+  resources :posts, except: [:edit]
+  resources :comments, except: [:edit]
 
   root to: 'sessions#new'
 
