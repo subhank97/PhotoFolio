@@ -36,5 +36,6 @@ class ApplicationController < ActionController::API
     Rails.logger.debug "Session data: #{session.to_hash}"
     @current_user ||= User.find_by(id: session[:user_id])
     Rails.logger.debug "Current user: #{@current_user}"
+    Rails.logger.debug "Current user ID: #{@current_user&.id}"
   end
 end
