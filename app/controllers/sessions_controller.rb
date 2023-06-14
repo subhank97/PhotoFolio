@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize
 
-  def new
-    if current_user
-      Rails.logger.debug "Current user found, redirecting to '/me'"
-      redirect_to '/me'
-    else
-      Rails.logger.debug "No current user found, rendering login form"
-      render json: { message: 'Login form' }, status: :ok
-    end
-  end
+  # def new
+  #   if current_user
+  #     Rails.logger.debug "Current user found, redirecting to '/me'"
+  #     redirect_to '/me'
+  #   else
+  #     Rails.logger.debug "No current user found, rendering login form"
+  #     render json: { message: 'Login form' }, status: :ok
+  #   end
+  # end
 
   def create
     user = User.find_by(username: params[:username])
