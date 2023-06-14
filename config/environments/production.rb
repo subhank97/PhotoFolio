@@ -48,7 +48,7 @@ Rails.application.configure do
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :debug
+  config.log_level = :info
 
 
   # Prepend all log lines with the following tags.
@@ -83,7 +83,7 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Use a different logger for distributed setups.
   # require "syslog/logger"
