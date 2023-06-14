@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'sessions#new'
 
-  get '/me', to: 'users#current'
+  get '/current', to: 'users#current'
   post '/login', to: "sessions#create"
   delete '/logout', to: 'sessions#destroy'
 
