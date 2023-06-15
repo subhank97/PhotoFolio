@@ -36,12 +36,16 @@ function NewPost({ user, setProfilePosts }) {
         })
         .then((newPost) => {
           console.log(newPost);
-          setProfilePosts((prevPosts) => [newPost, ...prevPosts]);
+          setProfilePosts((prevPosts) => {
+            if (Array.isArray(prevPosts)) {
+              return [newPost, ...prevPosts];
+            } else {
+              console.error('prevPosts is not an array:', prevPosts);
+              return [newPost];
+            }
+          });
           setImageFile(null);
           setDescription('');
-          if (setProfilePosts) {
-            setProfilePosts((prevPosts) => [newPost, ...prevPosts]);
-          }
         })
         .catch((error) => {
           toast.error(error.message);
