@@ -8,10 +8,10 @@ class UsersController < ApplicationController
 
   def current
     if current_user
-      Rails.logger.debug "Showing user: #{current_user.id}"
+      Rails.logger.debug "Current user: #{current_user.id}"
       render json: current_user, status: :ok
     else
-      Rails.logger.error "Not authorized to show user"
+      Rails.logger.error "No current user"
       render json: { error: 'Not authorized' }, status: :unauthorized
     end
   end

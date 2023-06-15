@@ -6,11 +6,12 @@ class SessionsController < Devise::SessionsController
       
         if user && user.valid_password?(params[:user][:password])
           sign_in :user, user
-          render json: user 
+          Rails.logger.debug "Signed in user: #{user.id}"
+          render json: { id: user.id, username: user.username } 
         else
           render json: { success: false, error: "Invalid username or password" }, status: :unauthorized
         end
-      end
+    end
   
     private
   
