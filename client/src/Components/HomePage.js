@@ -23,6 +23,7 @@ function HomePage() {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log('Server response:', data);
           setPosts(data);
         })
         .catch((error) => {
@@ -49,6 +50,8 @@ function HomePage() {
         }
       });
   }, []);
+
+  console.log(posts)
 
   function handleLogin(newUser) {
     setUser(newUser);
