@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :posts, except: [:edit]
   resources :comments, except: [:edit]
 
-  root to: 'fallback#index'
-  
+  root to: 'user#index'
+
   get '/current', to: 'users#current'
   post '/login', to: "sessions#create"
   delete '/logout', to: 'sessions#destroy'
