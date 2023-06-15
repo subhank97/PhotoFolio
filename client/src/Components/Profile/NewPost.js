@@ -16,8 +16,8 @@ function NewPost({ user, setProfilePosts }) {
     e.preventDefault();
     if (user && imageFile) {
       const formData = new FormData();
-      formData.append('image', imageFile);
-      formData.append('description', description);
+      formData.append('post[image]', imageFile);
+      formData.append('post[description]', description);
   
       fetch(`${process.env.REACT_APP_BACKEND_URL}/posts`, {
         method: 'POST',
