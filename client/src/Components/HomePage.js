@@ -28,24 +28,23 @@ function HomePage() {
         .catch((error) => {
           console.error('Error fetching user posts:', error);
         });
-    }
-    else {
-      console.log("No user")
+    } else {
+      console.log("No user");
     }
   }, [user]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/current`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/sign_in.json`, {
       credentials: 'include',
       headers: {
         'Access-Control-Allow-Credentials': 'true'
       }
     })
-      .then((r) => {
-        if (r.ok) {
-          r.json().then((user) => {
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((user) => {
             setUser(user);
-            console.log(user)
+            console.log(user);
           });
         }
       });

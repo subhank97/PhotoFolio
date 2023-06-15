@@ -10,21 +10,21 @@ function Login({ handleLogin }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/users/sign_in.json`, {
             credentials: 'include',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': 'true'
             },
-            body: JSON.stringify({ username: username, password: password }),
+            body: JSON.stringify({ user: { username: username, password: password } }),
         })
             .then((res) => {
                 if (res.ok) {
                     res.json().then((user) => {
                         handleLogin(user);
                         navigate(`/profile`);
-                        console.log(user)
+                        console.log(user);
                     });
                 } else {
                     res.json().then((data) => {
