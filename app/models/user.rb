@@ -4,6 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, email: false
 
+  attr_accessor :email
+
+  def email=(value)
+    self.username = value.split('@').first if value.present?
+  end
+
   def email_required?
     false
   end
@@ -11,7 +17,7 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
-  
+
   has_many :posts
   has_many :comments
 
