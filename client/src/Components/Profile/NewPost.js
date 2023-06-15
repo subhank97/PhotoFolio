@@ -35,7 +35,7 @@ function NewPost({ user, setProfilePosts }) {
           }
         })
         .then((newPost) => {
-          console.log(newPost);
+          console.log('New post:', newPost);
           setProfilePosts((prevPosts) => {
             if (Array.isArray(prevPosts)) {
               return [newPost, ...prevPosts];

@@ -24,7 +24,6 @@ function Login({ handleLogin }) {
                     res.json().then((user) => {
                         handleLogin(user);
                         navigate(`/profile`);
-                        console.log(user);
                     });
                 } else {
                     res.json().then((data) => {
