@@ -87,7 +87,7 @@ function Signup({ setUser }) {
           Sign Up
         </button>
         <p className="login-link">
-          Already have an account? <Link href="/login">Log in</Link>
+          Already have an account? <Link to="/login">Log in</Link>
         </p>
       </form>
     </div>
