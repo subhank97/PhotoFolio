@@ -34,7 +34,7 @@ function HomePage() {
   }, [user]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/sign_in.json`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/current`, {
       credentials: 'include',
       headers: {
         'Access-Control-Allow-Credentials': 'true'
