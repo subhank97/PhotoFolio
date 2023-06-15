@@ -16,6 +16,7 @@ function HomePage() {
   useEffect(() => {
     if (user) {
       fetch(`${process.env.REACT_APP_BACKEND_URL}/posts`, {
+        method: 'GET',
         credentials: 'include',
         headers: {
           'Access-Control-Allow-Credentials': 'true'
