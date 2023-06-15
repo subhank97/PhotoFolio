@@ -9,10 +9,8 @@ function Profile({ user, posts, setPosts }) {
   if (!user) {
     return <div>Loading...</div>;
   }
-
   console.log(user)
   console.log(posts)
-
 
   return (
     <div className="profile">

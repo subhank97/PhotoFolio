@@ -1,55 +1,31 @@
 class CommentsController < ApplicationController
-  before_action :authorize
-  before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :find_comment, only: [:update, :destroy]
 
-  def index
-    Rails.logger.debug "Fetching all comments"
-    comments = Comment.includes(:user)
-    render json: comments, include: :user, status: :ok
-  end
-
-  def show
-    Rails.logger.debug "Showing comment: #{@comment.id}"
-    render json: @comment, include: :user, status: :ok
-  end
-
+  # POST /comments
   def create
-    comment = current_user.comments.build(comment_params)
-    if comment.save
-      Rails.logger.debug "Created comment: #{comment.id}"
-      render json: comment, include: :user, status: :created
-    else
-      Rails.logger.error "Error creating comment: #{comment.errors.full_messages}"
-      render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
-    end
+    @comment = current_user.comments.create!(comment_params)
+    render json: @comment, status: :created
   end
 
+  # PUT /comments/:id
   def update
-    if @comment.update(comment_params)
-      Rails.logger.debug "Updated comment: #{@comment.id}"
-      render json: @comment, include: :user, status: :accepted
-    else
-      Rails.logger.error "Error updating comment: #{@comment.errors.full_messages}"
-      render json: { errors: @comment.errors.full_messages }, status: :unprocessable_entity
-    end
+    @comment.update(comment_params)
+    head :no_content
   end
 
+  # DELETE /comments/:id
   def destroy
-    Rails.logger.debug "Destroying comment: #{@comment.id}"
     @comment.destroy
     head :no_content
   end
 
   private
 
-  def set_comment
-    @comment = current_user.comments.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    Rails.logger.error "Comment not found: #{params[:id]}"
-    render json: { error: 'Comment not found' }, status: :not_found
+  def comment_params
+    params.permit(:content, :post_id)
   end
 
-  def comment_params
-    params.require(:comment).permit(:comment, :post_id)
+  def find_comment
+    @comment = Comment.find(params[:id])
   end
 end
