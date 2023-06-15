@@ -1,22 +1,18 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
-  before_action :authorize
-  before_action :set_current_user
+  include ActionController::MimeResponds
+  respond_to :json
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
-  def authorize
-    Rails.logger.info "Authorizing user"
-    unless current_user
-      Rails.logger.warn "No current user found"
-      render json: { error: 'Not Authorized' }, status: 401
-    else
-      Rails.logger.info "Current user: #{current_user.id}"
-    end
-  end
-
   private
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:image, :description])
+  end
 
   def render_not_found(exception)
     Rails.logger.warn "#{exception.model} not found"
@@ -26,16 +22,5 @@ class ApplicationController < ActionController::API
   def render_invalid(exception)
     Rails.logger.warn "Record invalid: #{exception.record.errors.full_messages}"
     render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
-  end
-
-  def current_user
-    @current_user
-  end
-
-  def set_current_user
-    Rails.logger.debug "Session data: #{session.to_hash}"
-    @current_user ||= User.find_by(id: session[:user_id])
-    Rails.logger.debug "Current user: #{@current_user}"
-    Rails.logger.debug "Current user ID: #{@current_user&.id}"
   end
 end

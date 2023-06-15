@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: [:create, :current]
+  skip_before_action :authenticate_user!, only: [:create, :current]
 
   def index
     Rails.logger.debug "Fetching all users"
