@@ -4,9 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function NewPost({ user, setProfilePosts }) {
 
-  console.log(user)
-  console.log(posts)
-  
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState('');
 
