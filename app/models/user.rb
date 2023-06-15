@@ -4,14 +4,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-       :recoverable, :rememberable, :trackable, :validatable,
-       email: false
-
-  attr_accessor :email
-
-  def email=(value)
-    self.username = value.split('@').first if value.present?
-  end
+         :recoverable, :rememberable, :trackable, :validatable,
+         email: false
 
   def email_required?
     false
@@ -26,4 +20,3 @@ class User < ApplicationRecord
 
   validates :username, presence: true
 end
-  
