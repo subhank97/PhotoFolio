@@ -1,5 +1,16 @@
 class SessionsController < Devise::SessionsController
     respond_to :json
+
+    def create
+        user = User.find_by(username: params[:user][:username])
+    
+        if user && user.valid_password?(params[:user][:password])
+          sign_in :user, user
+          render json: { success: true }
+        else
+          render json: { success: false, error: "Invalid username or password" }, status: :unauthorized
+        end
+      end
   
     private
   
