@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Login({ handleLogin }) {
     const [username, setUsername] = useState('');
@@ -73,7 +73,7 @@ function Login({ handleLogin }) {
                     </button>
                 </div>
                 <p className="forgot-password text-right">
-                    Don't have an account <a href="/sign-up">sign up?</a>
+                    Don't have an account <Link href="/sign-up">sign up?</Link>
                 </p>
             </form>
         </div>

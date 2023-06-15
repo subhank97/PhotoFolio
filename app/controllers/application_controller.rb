@@ -10,8 +10,7 @@ class ApplicationController < ActionController::API
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :username])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:image, :description])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :full_name])
   end
 
   def render_not_found(exception)

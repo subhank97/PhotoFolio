@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css'
 
 function Signup({ setUser }) {
@@ -25,9 +25,11 @@ function Signup({ setUser }) {
         'Access-Control-Allow-Credentials': 'true'
       },
       body: JSON.stringify({
-        full_name: fullName,
-        username: username,
-        password: password,
+        user: {
+          full_name: fullName,
+          username: username,
+          password: password,
+        },
       }),
     })
       .then((res) => {
@@ -85,7 +87,7 @@ function Signup({ setUser }) {
           Sign Up
         </button>
         <p className="login-link">
-          Already have an account? <a href="/login">Log in</a>
+          Already have an account? <Link href="/login">Log in</Link>
         </p>
       </form>
     </div>
