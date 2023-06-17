@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
 
   def index
-    Rails.logger.debug "Fetching all posts for current user: #{current_user.id}"
-    posts = current_user.posts
+    Rails.logger.debug "Fetching all posts"
+    posts = Post.all
     Rails.logger.debug "Posts fetched: #{posts.as_json}"
     render json: posts, each_serializer: PostSerializer, status: :ok
   end
