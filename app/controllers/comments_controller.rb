@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def index
     Rails.logger.debug "Fetching all comments"
-    comments = Comment.all
+    comments = Comment.all.as_json(include: { user: { only: [:id, :full_name] } })
     render json: comments, status: :ok
   end
 

@@ -5,11 +5,9 @@ import './Comment.css';
 function CommentForm({ id, user, comments, addComment, setComments, getComments }) {
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
-  const [userNames, setUserNames] = useState({});
 
   const commentSectionRef = useRef(null);
   const lastCommentRef = useRef(null);
-
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -59,32 +57,6 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
     }
   }, [comments]);
 
-  const fetchUserNames = async () => {
-    const uniqueUserIds = [...new Set(comments.map(comment => comment.user_id))];
-    const newUserNames = {};
-  
-    for (let userId of uniqueUserIds) {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`);
-      if (!response.ok) {
-        console.log(`Failed to fetch user with ID ${userId}`);
-        continue;
-      }
-      const user = await response.json();
-      if (user) {
-        newUserNames[userId] = user.full_name;
-      } else {
-        console.log(`User with ID ${userId} not found`);
-      }
-    }
-  
-    setUserNames(newUserNames);
-  };
-
-  useEffect(() => {
-    fetchUserNames();
-  }, [comments]);
-  
-
   return (
     <div className="comment-section">
       <h5>Comments:</h5>
@@ -94,10 +66,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
             <div key={comment.id} ref={index === comments.length - 1 ? lastCommentRef : null}>
               <CommentCard
                 setComments={setComments}
-                id={comment.id}
-                comment={comment.comment}
-                user={userNames[comment.user_id] || 'Unknown User'}
-                comments={comments}
+                comment={comment}
               />
             </div>
           ))}

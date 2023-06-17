@@ -46,13 +46,11 @@ function HomePage() {
         if (res.ok) {
           res.json().then((user) => {
             setUser(user);
-            console.log(user);
           });
         }
       });
   }, []);
 
-  console.log(posts)
 
   function handleLogin(newUser) {
     setUser(newUser);
