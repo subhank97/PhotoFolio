@@ -20,7 +20,8 @@ function HomePage() {
         credentials: 'include',
         headers: {
           'Access-Control-Allow-Credentials': 'true'
-        }
+        },
+        redirect: 'follow'
       })
         .then((res) => res.json())
         .then((data) => {
