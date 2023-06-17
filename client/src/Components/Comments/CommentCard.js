@@ -1,19 +1,24 @@
 import React from 'react';
 
 function CommentCard({ comment, setComments, comments }) {
-  function handleDeleteComment(id) {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`, {
-      credentials: 'include',
-      headers: {
-        'Access-Control-Allow-Credentials': 'true'
-      },
-      method: 'DELETE'
-    })
-      .then((resp) => resp.json())
-      .then(data => {
-        console.log(data);
-        setComments(comments.filter(e => e.id !== data.id));
+  async function handleDeleteComment(id) {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`, {
+        credentials: 'include',
+        headers: {
+          'Access-Control-Allow-Credentials': 'true'
+        },
+        method: 'DELETE'
       });
+
+      if (response.ok) {
+        setComments((prevComments) => prevComments.filter((c) => c.id !== id));
+      } else {
+        console.error('Error deleting the comment');
+      }
+    } catch (error) {
+      console.error('Error deleting the comment:', error);
+    }
   }
 
   return (

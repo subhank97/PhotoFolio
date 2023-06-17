@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import List from './List';
 import axios from 'axios';
-import './Discoverpage.css'
+import './Discoverpage.css';
 
 function DiscoverPage({ user }) {
   const [data, setData] = useState([]);
-  const [comments, setComments] = useState({});
+  const [comments, setComments] = useState([]);
 
   function addComment(newComment) {
-    setComments((prevComments) => ({
-      ...prevComments,
-      [newComment.id]: newComment,
-    }));
+    setComments((prevComments) => [...prevComments, newComment]);
   }
 
   useEffect(() => {
@@ -33,7 +30,7 @@ function DiscoverPage({ user }) {
           throw new Error('Error fetching comments');
         }
       })
-      .then((resp) => setComments(resp.data))
+      .then((resp) => setComments(resp))
       .catch((error) => {
         console.error('Error fetching comments:', error);
       });

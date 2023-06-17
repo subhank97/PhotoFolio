@@ -35,9 +35,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    Rails.logger.debug "Destroying comment: #{@comment.id}"
-    @comment.destroy
-    head :no_content
+    if @comment.user_id == current_user.id
+      @comment.destroy
+      head :no_content
+    else
+      render json: { error: 'You are not authorized to delete this comment' }, status: :unauthorized
+    end
   end
 
   private
