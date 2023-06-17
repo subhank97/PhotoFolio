@@ -22,11 +22,18 @@ function DiscoverPage({ user }) {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/comments`, {
       credentials: 'include',
       headers: {
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Credentials': 'true'
       }
     })
-      .then((res) => res.json())
-      .then((resp) => setComments(resp))
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('Error fetching comments');
+        }
+      })
+      .then((resp) => setComments(resp.data))
       .catch((error) => {
         console.error('Error fetching comments:', error);
       });

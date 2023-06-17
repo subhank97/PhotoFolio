@@ -4,9 +4,9 @@ class PostsController < ApplicationController
 
   def index
     Rails.logger.debug "Fetching all posts for current user: #{current_user.id}"
-    posts = current_user.posts.includes(:user)
-    Rails.logger.debug "Posts fetched: #{posts.as_json(include: :user)}"
-    render json: posts, include: :user, status: :ok
+    posts = current_user.posts
+    Rails.logger.debug "Posts fetched: #{posts.as_json}"
+    render json: posts, each_serializer: PostSerializer, status: :ok
   end
 
   def show

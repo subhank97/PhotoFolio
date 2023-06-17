@@ -26,9 +26,10 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
         'Access-Control-Allow-Credentials': 'true'
       },
       body: JSON.stringify({
-        comment: newComment,
-        user_id: user.id,
-        item_id: id,
+        comment: {
+          comment: newComment,
+          item_id: id,
+        }
       }),
     })
       .then((res) => {
@@ -43,7 +44,6 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
         setNewComment('');
         setError('');
 
-        // Scroll to the last comment
         if (lastCommentRef.current) {
           lastCommentRef.current.scrollIntoView({ behavior: 'smooth' });
         }
@@ -59,22 +59,31 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
     }
   }, [comments]);
 
-  useEffect(() => {
-    const fetchUserNames = async () => {
-      const uniqueUserIds = [...new Set(comments.map(comment => comment.user_id))];
-      const newUserNames = {};
-
-      for (let userId of uniqueUserIds) {
-        const response = await fetch(`/users/${userId}`);
-        const user = await response.json();
-        newUserNames[userId] = user.full_name;
+  const fetchUserNames = async () => {
+    const uniqueUserIds = [...new Set(comments.map(comment => comment.user_id))];
+    const newUserNames = {};
+  
+    for (let userId of uniqueUserIds) {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`);
+      if (!response.ok) {
+        console.log(`Failed to fetch user with ID ${userId}`);
+        continue;
       }
+      const user = await response.json();
+      if (user) {
+        newUserNames[userId] = user.full_name;
+      } else {
+        console.log(`User with ID ${userId} not found`);
+      }
+    }
+  
+    setUserNames(newUserNames);
+  };
 
-      setUserNames(newUserNames);
-    };
-
+  useEffect(() => {
     fetchUserNames();
   }, [comments]);
+  
 
   return (
     <div className="comment-section">

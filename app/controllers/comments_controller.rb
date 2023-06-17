@@ -4,8 +4,8 @@ class CommentsController < ApplicationController
 
   def index
     Rails.logger.debug "Fetching all comments"
-    comments = Comment.includes(:user)
-    render json: comments, include: :user, status: :ok
+    comments = Comment.all
+    render json: comments, status: :ok
   end
 
   def show
@@ -50,6 +50,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:comment, :post_id)
+    params.require(:comment).permit(:comment, :item_id)
   end
 end

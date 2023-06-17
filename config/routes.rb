@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'sessions' }
+  devise_for :users, controllers: { sessions: 'sessions', registrations: 'registrations' }
+  resources :users, only: [:show]
   resources :posts, except: [:edit]
   resources :comments, except: [:edit]
 

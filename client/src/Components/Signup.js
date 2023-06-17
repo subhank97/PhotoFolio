@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './Login.css'
+import './Login.css';
 
 function Signup({ setUser }) {
   const [fullName, setFullName] = useState('');
@@ -9,47 +9,45 @@ function Signup({ setUser }) {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  function onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
-
     if (!fullName || !username || !password) {
       setError('Please fill in all fields');
       return;
     }
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
-      credentials: 'include',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': 'true'
-      },
-      body: JSON.stringify({
-        user: {
-          full_name: fullName,
-          username: username,
-          password: password,
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Credentials': 'true',
         },
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          res.json().then((user) => {
-            setUser(user);
-            navigate(`/profile`);
-          });
-        } else {
-          res.json().then((json) => setError(json.error));
-        }
-      })
-      .catch((error) => {
-        console.log('Error signing up:', error);
+        body: JSON.stringify({
+          user: {
+            full_name: fullName,
+            username: username,
+            password: password,
+          },
+        }),
       });
 
-    setFullName('');
-    setUsername('');
-    setPassword('');
-  }
+      if (response.ok) {
+        const user = await response.json();
+        setUser(user);
+        setFullName('');
+        setUsername('');
+        setPassword('');
+        navigate(`/profile`);
+      } else {
+        const errorJson = await response.json();
+        setError(errorJson.error);
+      }
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
+  };
 
   return (
     <div className="signup">
@@ -83,7 +81,7 @@ function Signup({ setUser }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" disabled={!fullName || !username || !password}>
           Sign Up
         </button>
         <p className="login-link">
@@ -95,4 +93,3 @@ function Signup({ setUser }) {
 }
 
 export default Signup;
-
