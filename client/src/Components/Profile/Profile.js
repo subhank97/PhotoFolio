@@ -6,10 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Profile.css';
 
 function Profile({ user, posts, setPosts }) {
+  
+  console.log(posts)
+
   if (!user) {
     return <div>Loading...</div>;
   }
-  console.log(posts)
 
   return (
     <div className="profile">
