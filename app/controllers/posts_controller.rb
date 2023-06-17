@@ -10,14 +10,14 @@ class PostsController < ApplicationController
   end
 
   def show
-    render json: @post, include: :user, status: :ok
+    render json: @post, serializer: PostSerializer, status: :ok
   end
 
   def create
     post = current_user.posts.build(post_params)
     if post.save
       Rails.logger.debug "Created post: #{post.id} for current user: #{current_user.id}"
-      render json: post, include: :user, status: :created
+      render json: post, serializer: PostSerializer, status: :created
     else
       Rails.logger.error "Error creating post: #{post.errors.full_messages}"
       render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       Rails.logger.debug "Updated post: #{@post.id} for current user: #{current_user.id}"
-      render json: @post, include: :user, status: :accepted
+      render json: @post, serializer: PostSerializer, status: :accepted
     else
       Rails.logger.error "Error updating post: #{@post.errors.full_messages}"
       render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
