@@ -10,7 +10,7 @@ function Login({ handleLogin }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/users/sign_in.json`, {
+        fetch("/users/sign_in.json", {
             credentials: 'include',
             method: 'POST',
             headers: {

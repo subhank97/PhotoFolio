@@ -17,7 +17,7 @@ function Signup({ setUser }) {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+      const response = await fetch("/users", {
         credentials: 'include',
         method: 'POST',
         headers: {

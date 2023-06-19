@@ -16,7 +16,7 @@ function DiscoverPage({ user }) {
   }, []);
 
   function getComments() {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/comments`, {
+    fetch("/comments", {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',

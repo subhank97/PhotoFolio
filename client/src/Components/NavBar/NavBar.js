@@ -9,7 +9,7 @@ function NavBar({ user, setUser, setPosts }) {
 
   const handleLogoutClick = () => {
     setIsLoggingOut(true);
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/sign_out.json`, {
+    fetch("/users/sign_out.json", {
       method: "DELETE",
       credentials: 'include',
       headers: {
