@@ -15,7 +15,7 @@ function HomePage() {
 
   useEffect(() => {
     if (user) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/posts`, {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/users-posts`, {
         method: 'GET',
         credentials: 'include',
         headers: {
