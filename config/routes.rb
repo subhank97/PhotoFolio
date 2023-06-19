@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   get "/current", to: "users#current"
   get "/users-posts", to: "posts#index"
-
+  post "/users", to: "users#create"
+  get "/comments", to: "comments#index"
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
