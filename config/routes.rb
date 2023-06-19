@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :comments, except: [:edit]
 
   get "/current", to: "users#current"
-  get 'users-posts' to 'user#index'
-  
+  get '/users-posts' to: 'posts#index'
+
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
