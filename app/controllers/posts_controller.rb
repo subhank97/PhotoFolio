@@ -3,21 +3,21 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
 
   def index
-    Rails.logger.debug "Fetching all posts"
-    posts = Post.all
+    Rails.logger.debug "Fetching all posts for current user: #{current_user.id}"
+    posts = current_user.posts
     Rails.logger.debug "Posts fetched: #{posts.as_json}"
     render json: posts, each_serializer: PostSerializer, status: :ok
   end
 
   def show
-    render json: @post, serializer: PostSerializer, status: :ok
+    render json: @post, include: :user, status: :ok
   end
 
   def create
     post = current_user.posts.build(post_params)
     if post.save
       Rails.logger.debug "Created post: #{post.id} for current user: #{current_user.id}"
-      render json: post, serializer: PostSerializer, status: :created
+      render json: post, include: :user, status: :created
     else
       Rails.logger.error "Error creating post: #{post.errors.full_messages}"
       render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       Rails.logger.debug "Updated post: #{@post.id} for current user: #{current_user.id}"
-      render json: @post, serializer: PostSerializer, status: :accepted
+      render json: @post, include: :user, status: :accepted
     else
       Rails.logger.error "Error updating post: #{@post.errors.full_messages}"
       render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
