@@ -6,7 +6,7 @@ Modal.setAppElement('#root');
 export default function PostDetail({ open, onClose, image, description, user, id, updatePosts }) {
 
   function handleDeletePost(id) {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}/posts/${id}`, {
+    fetch(`/users/${user.id}/posts/${id}`, {
       method: 'DELETE',
       headers: {
         'Access-Control-Allow-Credentials': 'true'
