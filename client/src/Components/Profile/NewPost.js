@@ -11,9 +11,8 @@ function NewPost({ user, setProfilePosts }) {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
-    toast.success("Outside the if-statement");
     if (file) {
-      toast.success("Image selected for upload!");
+      toast.success("Image selected");
     }
   };
 
