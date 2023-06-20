@@ -3,7 +3,7 @@ import React from 'react';
 function CommentCard({ comment, setComments, comments }) {
   async function handleDeleteComment(id) {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`, {
+      const response = await fetch(`/comments/${id}`, {
         credentials: 'include',
         headers: {
           'Access-Control-Allow-Credentials': 'true'

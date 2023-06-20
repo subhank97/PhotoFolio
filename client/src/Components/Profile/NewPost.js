@@ -19,7 +19,7 @@ function NewPost({ user, setProfilePosts }) {
       formData.append('post[image]', imageFile);
       formData.append('post[description]', description);
   
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/posts`, {
+      fetch("/posts", {
         method: 'POST',
         body: formData,
         credentials: 'include',

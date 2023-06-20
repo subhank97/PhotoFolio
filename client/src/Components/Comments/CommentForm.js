@@ -16,7 +16,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
       return;
     }
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/comments`, {
+    fetch("/comments", {
       credentials: 'include',
       method: 'POST',
       headers: {
