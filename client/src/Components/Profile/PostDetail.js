@@ -12,7 +12,11 @@ export default function PostDetail({ open, onClose, image, description, user, id
         'Access-Control-Allow-Credentials': 'true'
       }
     })
-      .then((resp) => resp.json())
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error('Error deleting post');
+        }
+      })
       .then(() => {
         updatePosts(prevPosts => prevPosts.filter(post => post.id !== id));
       })

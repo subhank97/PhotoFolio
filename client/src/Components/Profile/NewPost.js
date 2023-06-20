@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function NewPost({ user, setProfilePosts }) {
 
   const [imageFile, setImageFile] = useState(null);
@@ -10,6 +11,10 @@ function NewPost({ user, setProfilePosts }) {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
+    toast.success("Outside the if-statement");
+    if (file) {
+      toast.success("Image selected for upload!");
+    }
   };
 
   const handleSubmit = (e) => {
@@ -51,7 +56,7 @@ function NewPost({ user, setProfilePosts }) {
           toast.error(error.message);
         });
     } else {
-      toast.error('Please select an image and be logged in.');
+      toast.error('Image or caption value empty');
     }
   };
   
@@ -65,7 +70,7 @@ function NewPost({ user, setProfilePosts }) {
         <div className="image-form">
           <input id="image-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
           <label htmlFor="image-upload" className="upload-button">
-            <span>Upload Image</span>
+            <span>Select image</span>
           </label>
         </div>
         <div className="article-description">
