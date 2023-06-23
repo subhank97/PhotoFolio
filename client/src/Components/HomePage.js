@@ -58,9 +58,9 @@ function HomePage() {
   }
 
   return (
-    <>
+    <div className='w-full'>
       <NavBar user={user} setUser={setUser} setPosts={setPosts} />
-      <div className="container">
+      <div>
         <Routes>
           <Route exact path="/" element={<DiscoverPage user={user} />} />
           <Route
@@ -78,7 +78,7 @@ function HomePage() {
           <Route exact path="/sign-up" element={<Signup setUser={setUser} />} />
         </Routes>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -9,22 +9,22 @@ function Card({ item, user, comments, addComment, id, setComments, getComments }
   const member = item.author;
 
   return (
-    <div className="post-card">
-      <img className="post-image" src={images} alt="random" onClick={() => setOpenModal(true)}></img>
-      <Detail
-        getComments={getComments}
-        setComments={setComments}
-        id={id}
-        comments={comments}
-        addComment={addComment}
-        member={member}
-        user={user}
-        images={images}
-        description={description}
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-      />
-    </div>
+      <div>
+        <img class="h-auto max-w-full rounded-lg lg:h-64 w-96" src={images} alt="random" onClick={() => setOpenModal(true)} />
+        <Detail
+          getComments={getComments}
+          setComments={setComments}
+          id={id}
+          comments={comments}
+          addComment={addComment}
+          member={member}
+          user={user}
+          images={images}
+          description={description}
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+        />
+      </div>
   );
 }
 

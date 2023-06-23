@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ImInstagram } from 'react-icons/im';
-import './Navbar.css';
+import { FaUserCircle } from 'react-icons/fa';
 
 function NavBar({ user, setUser, setPosts }) {
   const navigate = useNavigate();
@@ -40,32 +40,42 @@ function NavBar({ user, setUser, setPosts }) {
       );
     } else if (user !== null) {
       return (
-        <>
-          <NavLink to="/profile" className="navbar-link">
-            Profile
-          </NavLink>
-          <button className="navbar-link" onClick={handleLogoutClick}>
-            Logout
-          </button>
-        </>
+        <div className="flex items-center">
+          <div className="relative inline-block ml-4">
+            <button className="navbar-link">
+              <FaUserCircle size={24} />
+            </button>
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+              <NavLink to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                Profile
+              </NavLink>
+              <button className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100" onClick={handleLogoutClick}>
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
       );
     } else {
       return (
-        <>
+        <div className="flex items-center ml-auto">
           <NavLink to="/login" className="navbar-link">
             Login
           </NavLink>
-        </>
+          <NavLink to="/signup" className="navbar-link ml-4">
+            Sign Up
+          </NavLink>
+        </div>
       );
     }
   };
 
   return (
-    <nav className="navbar">
-      <NavLink to="/" className="navbar-logo">
+    <nav className="flex items-center justify-between bg-blue-500 p-4">
+      <NavLink to="/" className="text-white">
         <ImInstagram size={50} />
       </NavLink>
-      <div className="navbar-menu">
+      <div className="flex items-center">
         {renderAuthButton()}
       </div>
     </nav>

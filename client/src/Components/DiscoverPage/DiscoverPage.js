@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import List from './List';
 import axios from 'axios';
-import './Discoverpage.css';
 
 function DiscoverPage({ user }) {
   const [data, setData] = useState([]);
@@ -49,9 +48,9 @@ function DiscoverPage({ user }) {
   }, []);
 
   return (
-    <div className="post-page">
+    <>
       <List data={data} user={user} comments={comments} addComment={addComment} setComments={setComments} getComments={getComments} />
-    </div>
+    </>
   );
 }
 
