@@ -5,7 +5,12 @@ import { FaUserCircle } from 'react-icons/fa';
 
 function NavBar({ user, setUser, setPosts }) {
   const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   const handleLogoutClick = () => {
     setIsLoggingOut(true);
@@ -19,7 +24,7 @@ function NavBar({ user, setUser, setPosts }) {
       .then((response) => {
         if (response.ok) {
           setUser(null);
-          setPosts([]); 
+          setPosts([]);
           navigate("/");
         }
       })
@@ -42,17 +47,25 @@ function NavBar({ user, setUser, setPosts }) {
       return (
         <div className="flex items-center">
           <div className="relative inline-block ml-4">
-            <button className="navbar-link">
-              <FaUserCircle size={24} />
+            <button className="navbar-link" onClick={toggleDropdown}>
+              <FaUserCircle size={24} style={{ color: 'white' }} />
             </button>
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
-              <NavLink to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
-                Profile
-              </NavLink>
-              <button className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100" onClick={handleLogoutClick}>
-                Logout
-              </button>
-            </div>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+                <NavLink
+                  to="/profile"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                >
+                  Profile
+                </NavLink>
+                <button
+                  className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100"
+                  onClick={handleLogoutClick}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       );
@@ -61,9 +74,6 @@ function NavBar({ user, setUser, setPosts }) {
         <div className="flex items-center ml-auto">
           <NavLink to="/login" className="navbar-link">
             Login
-          </NavLink>
-          <NavLink to="/signup" className="navbar-link ml-4">
-            Sign Up
           </NavLink>
         </div>
       );
