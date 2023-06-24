@@ -5,12 +5,7 @@ import { FaUserCircle } from 'react-icons/fa';
 
 function NavBar({ user, setUser, setPosts }) {
   const navigate = useNavigate();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
   const handleLogoutClick = () => {
     setIsLoggingOut(true);
@@ -36,57 +31,18 @@ function NavBar({ user, setUser, setPosts }) {
       });
   };
 
-  const renderAuthButton = () => {
-    if (isLoggingOut) {
-      return (
-        <button className="navbar-link" disabled>
-          Logging Out...
-        </button>
-      );
-    } else if (user !== null) {
-      return (
-        <div className="flex items-center">
-          <div className="relative inline-block ml-4">
-            <button className="navbar-link" onClick={toggleDropdown}>
-              <FaUserCircle size={24} style={{ color: 'white' }} />
-            </button>
-            {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
-                <NavLink
-                  to="/profile"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                >
-                  Profile
-                </NavLink>
-                <button
-                  className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100"
-                  onClick={handleLogoutClick}
-                >
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="flex items-center ml-auto">
-          <NavLink to="/login" className="navbar-link">
-            Login
-          </NavLink>
-        </div>
-      );
-    }
-  };
-
   return (
-    <nav className="flex items-center justify-between bg-blue-500 p-4">
-      <NavLink to="/" className="text-white">
-        <ImInstagram size={50} />
-      </NavLink>
-      <div className="flex items-center">
-        {renderAuthButton()}
+    <nav className="w-0 border-l-8 border-amber-300 text-lg font-bold right-0 space-y-5 fixed h-screen bg-black overflow-hidden transition-all duration-300 ease-in-out hover:w-40 hover:border-none">
+      <div className='mx-10 my-40'>
+        <NavLink to="/gallery" className="text-white block hover:text-amber-300 transition-colors">
+          Gallery
+        </NavLink>
+        <NavLink to="/about-us" className="pt-10 text-white block hover:text-amber-300 transition-colors">
+          About Us
+        </NavLink>
+        <NavLink to="/login" className="pt-10 text-white block hover:text-amber-300 transition-colors">
+          {user ? 'Logout' : 'Login'}
+        </NavLink>
       </div>
     </nav>
   );
