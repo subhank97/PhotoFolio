@@ -7,9 +7,9 @@ function PostList({ posts, user, updatePosts }) {
   // console.log(posts)
 
   return (
-    <div>
+    <div className="pr-3 gap-2 columns-3">
       {userPosts.length > 0 ? (
-        <ul className='post-list'>
+        <>
           {userPosts.map((post) => (
             <PostCard
               key={post.id}
@@ -20,7 +20,7 @@ function PostList({ posts, user, updatePosts }) {
               updatePosts={updatePosts}
             />
           ))}
-        </ul>
+        </>
       ) : (
         <p>No posts yet.</p>
       )}

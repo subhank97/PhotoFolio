@@ -5,8 +5,8 @@ function PostCard({ image, description, user, id, updatePosts }) {
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <div className='post-card'>
-      <img className='post-image' src={image} alt='random' onClick={() => setOpenModal(true)}></img>
+    <div>
+      <img className="py-1 hover:scale-small transition-all duration-800 cursor-pointer" src={image} alt='random' onClick={() => setOpenModal(true)}></img>
       <PostDetail
         id={id}
         user={user}

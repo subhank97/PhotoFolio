@@ -16,7 +16,7 @@ function Profile({ comments, user, posts, setPosts }) {
   }
 
   return (
-    <main class="h-full pt-60 bg-slate-950">
+    <main class="h-full pt-60 bg-slate-950 text-white">
       <section class="relative block h-500-px">
         <div
           className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
@@ -25,7 +25,7 @@ function Profile({ comments, user, posts, setPosts }) {
       </section>
       <section class="relative py-16 bg-blueGray-200">
         <div class="container mx-auto px-4">
-          <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-lg -mt-64">
+          <div class="relative flex flex-col min-w-0 break-words bg-slate-900 w-full mb-6 rounded-lg -mt-64">
             <div class="px-6">
               <div class="flex flex-wrap justify-center">
                 <div class="w-full lg:r-0 px-4 lg:order-3 lg:text-right lg:self-center">
@@ -62,11 +62,10 @@ function Profile({ comments, user, posts, setPosts }) {
                 <NewPost user={user} setProfilePosts={setPosts} />
               </div>
               <div class="mt-1 py-5 border-t border-blueGray-200 text-center">
-                <div class="flex flex-wrap justify-center">
-                  <div class="w-full lg:w-9/12 px-4">
+                <div>
+                  <div>
                     {posts && posts.length > 0 ? (
                       <>
-                        <h4>Your Posts</h4>
                         <PostList posts={posts} user={user} updatePosts={setPosts} />
                       </>
                     ) : (
