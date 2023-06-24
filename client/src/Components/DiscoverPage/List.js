@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
-function List({ data, user, comments, addComment, setComments, getComments }) {
+function List({ data, user, comments, addComment, setComments, getComments, onImageLoad }) {
   return (
     <div className="pr-3 columns-3 gap-2 bg-black">
       {Array.isArray(data) ? (
@@ -18,6 +18,7 @@ function List({ data, user, comments, addComment, setComments, getComments }) {
                 addComment={addComment}
                 setComments={setComments}
                 getComments={getComments}
+                onImageLoad={onImageLoad}
               />
             </div>
           );
