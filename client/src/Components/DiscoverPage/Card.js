@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Detail from './Detail';
+import ModalCard from './ModalCard';
 
 function Card({ item, user, comments, addComment, id, setComments, getComments, onImageLoad }) {
   const [openModal, setOpenModal] = useState(false);
@@ -17,7 +17,7 @@ function Card({ item, user, comments, addComment, id, setComments, getComments, 
   return (
     <div>
       <img onLoad={handleImageLoad} className="py-1 hover:scale-small transition-all duration-800 cursor-pointer" src={images} alt="random" onClick={() => setOpenModal(true)} />
-      <Detail
+      <ModalCard
         getComments={getComments}
         setComments={setComments}
         id={id}

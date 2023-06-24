@@ -4,10 +4,8 @@ import CommentForm from '../Comments/CommentForm';
 import Heart from 'react-animated-heart';
 
 
-export default function Detail({ getComments, setComments, id, member, open, onClose, images, description, user, comments, addComment }) {
+export default function ModalCard({ getComments, setComments, id, member, open, onClose, images, description, user, comments, addComment }) {
   const [like, setLike] = useState(false);
-
-  // console.log(user)
 
   return (
     <Modal isOpen={open} onRequestClose={onClose} className="fixed inset-0 z-10 flex items-center justify-center h-full overflow-y-auto">
