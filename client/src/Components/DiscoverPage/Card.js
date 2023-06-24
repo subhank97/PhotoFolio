@@ -10,7 +10,7 @@ function Card({ item, user, comments, addComment, id, setComments, getComments, 
 
   return (
     <div>
-      <img className="py-1" src={images} alt="random" onClick={() => setOpenModal(true)} />
+      <img className="py-1 hover:scale-small transition-all duration-800 cursor-pointer" src={images} alt="random" onClick={() => setOpenModal(true)} />
       <Detail
         getComments={getComments}
         setComments={setComments}

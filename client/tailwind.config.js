@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       width: {
         'tiny': '0.25rem',
+      },
+      scale: {
+        'small': '1.01'
       }
     },
   },
