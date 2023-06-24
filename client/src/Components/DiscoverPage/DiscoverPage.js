@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import List from './List';
 import axios from 'axios';
 
-function DiscoverPage({ user }) {
+function DiscoverPage({ user, comments, getComments, setComments }) {
   const [data, setData] = useState([]);
-  const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [allImagesLoaded, setAllImagesLoaded] = useState(false);
   const [imagesLoadedCount, setImagesLoadedCount] = useState(0);
@@ -23,27 +22,6 @@ function DiscoverPage({ user }) {
   useEffect(() => {
     getComments();
   }, []);
-
-  function getComments() {
-    fetch("/comments", {
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': 'true'
-      }
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error('Error fetching comments');
-        }
-      })
-      .then((resp) => setComments(resp))
-      .catch((error) => {
-        console.error('Error fetching comments:', error);
-      });
-  }
 
   useEffect(() => {
     const fetchData = async () => {
