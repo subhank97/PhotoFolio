@@ -26,7 +26,7 @@ function DiscoverPage({ user, comments, getComments, setComments }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://picsum.photos/v2/list?page=3&limit=25');
+        const response = await axios.get('https://picsum.photos/v2/list?page=2&limit=30');
         setData(response.data);
         window.onload = () => {
           setIsLoading(false);

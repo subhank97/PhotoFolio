@@ -5,6 +5,8 @@ import NavBar from './NavBar/NavBar';
 import DiscoverPage from './DiscoverPage/DiscoverPage';
 import Signup from './Signup';
 import Profile from './Profile/Profile';
+import { useNavigate } from 'react-router-dom';
+
 
 export const ThemeContext = createContext(null);
 
@@ -12,7 +14,8 @@ function HomePage() {
   const [comments, setComments] = useState([]);
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
-
+  const navigate = useNavigate();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -79,9 +82,33 @@ function HomePage() {
       });
   }
 
+  const handleLogoutClick = () => {
+    setIsLoggingOut(true);
+    fetch("/users/sign_out.json", {
+      method: "DELETE",
+      credentials: 'include',
+      headers: {
+        'Access-Control-Allow-Credentials': 'true'
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          setUser(null);
+          setPosts([]);
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.log("Error logging out:", error);
+      })
+      .finally(() => {
+        setIsLoggingOut(false);
+      });
+  };
+
   return (
     <div className='w-full bg-slate-950'>
-      <NavBar user={user} setUser={setUser} setPosts={setPosts} />
+      <NavBar user={user} setUser={setUser} setPosts={setPosts} handleLogoutClick={handleLogoutClick}/>
       <div>
         <Routes>
           <Route exact path="/" element={<DiscoverPage user={user} getComments={getComments} setComments={setComments} comments={comments} />} />
@@ -90,7 +117,7 @@ function HomePage() {
             path="/profile"
             element={
               user ? (
-                <Profile getComments={getComments} comments={comments} user={user} posts={posts} setPosts={setPosts} />
+                <Profile handleLogoutClick={handleLogoutClick} getComments={getComments} comments={comments} user={user} posts={posts} setPosts={setPosts} />
               ) : (
                 <div>Loading...</div>
               )

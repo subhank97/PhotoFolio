@@ -58,9 +58,9 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
   }, [comments]);
 
   return (
-    <div className="flex flex-col items-stretch max-w-lg mx-auto space-y-10">
+    <div className="flex flex-col h-full items-stretch space-y-3">
       <h5 className="font-bold text-lg">Comments:</h5>
-      <div className="flex-1 overflow-y-auto max-h-[300px] space-y-4" ref={commentSectionRef}>
+      <div className="overflow-y-auto max-h-[215px] max-w-[315px] space-y-2 flex-grow" ref={commentSectionRef}>
         {comments.map((comment, index) => (
           <CommentCard
             key={comment.id}
@@ -70,9 +70,9 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
           />
         ))}
       </div>
-      <div className="space-y-4">
+      <div className="mt-4">
         {error && <div>{error}</div>}
-        <form onSubmit={handleComment} className="flex items-center space-x-4">
+        <form onSubmit={handleComment} className="flex items-center space-x-2">
           <input
             type="text"
             name="comment"
@@ -80,9 +80,9 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
             value={newComment}
             placeholder="Add a comment..."
             autoComplete="off"
-            className="flex-grow border-none rounded py-2 px-4 mr-4"
+            className="flex-grow border border-gray-300 rounded py-2 px-4 mr-2"
           />
-          <input type="submit" name="submit" className="py-2 px-4 bg-blue-500 text-white rounded cursor-pointer hover:bg-blue-700 transition-colors" value="Post" />
+          <input type="submit" name="submit" className="py-1 px-2 bg-slate-950 text-white rounded cursor-pointer hover:bg-amber-500 transition-colors" value="Post" />
         </form>
       </div>
     </div>
