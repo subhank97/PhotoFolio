@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 function NavBar({ user, handleLogoutClick }) {
 
   return (
-    <nav className="w-0 border-l-8 border-amber-300 text-lg font-bold right-0 space-y-5 fixed h-screen bg-black overflow-hidden transition-all duration-300 ease-in-out hover:w-40 hover:border-none" style={{ zIndex: '9999' }}>
-      <div className='mx-10 my-40'>
+    <nav className="w-0 border-l-8 border-amber-300 text-lg font-bold right-0 space-y-3 fixed h-screen bg-black overflow-hidden transition-all duration-300 ease-in-out hover:w-40 hover:border-l-8" style={{ zIndex: '9999' }}>
+      <div className='mx-5 my-40'>
         <NavLink to="/" className="text-white block hover:text-amber-300 transition-colors">
           Gallery
         </NavLink>
@@ -14,7 +14,7 @@ function NavBar({ user, handleLogoutClick }) {
             Profile
           </NavLink>
         )}
-        <NavLink to="#" className="pt-10 text-white block hover:text-amber-300 transition-colors">
+        <NavLink to="/about" className="pt-10 text-white block hover:text-amber-300 transition-colors">
           About Us
         </NavLink>
         {user ? (

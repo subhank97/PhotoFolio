@@ -3,7 +3,7 @@ import Card from './Card';
 
 function List({ data, user, comments, addComment, setComments, getComments, onImageLoad }) {
   return (
-    <div className="bg-black pr-3 gap-2 columns-3">
+    <div className="md:columns-3 bg-black pr-3 gap-2">
       {Array.isArray(data) ? (
         data.map((item) => {
           const itemComments = comments && item && item.id && item.id !== null ?

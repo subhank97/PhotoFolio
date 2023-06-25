@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import List from './List';
 import axios from 'axios';
 
-function DiscoverPage({ user, comments, getComments, setComments }) {
+function Gallery({ user, comments, getComments, setComments }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [allImagesLoaded, setAllImagesLoaded] = useState(false);
@@ -50,4 +50,4 @@ function DiscoverPage({ user, comments, getComments, setComments }) {
   );
 }
 
-export default DiscoverPage;
+export default Gallery;

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import CommentCard from './CommentCard';
-import './Comment.css';
 
 function CommentForm({ id, user, comments, addComment, setComments, getComments }) {
   const [newComment, setNewComment] = useState('');

@@ -2,10 +2,11 @@ import React, { useState, useEffect, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import NavBar from './NavBar/NavBar';
-import DiscoverPage from './DiscoverPage/DiscoverPage';
 import Signup from './Signup';
 import Profile from './Profile/Profile';
 import { useNavigate } from 'react-router-dom';
+import Gallery from './Gallery/Gallery';
+import About from './About';
 
 
 export const ThemeContext = createContext(null);
@@ -111,7 +112,8 @@ function HomePage() {
       <NavBar user={user} setUser={setUser} setPosts={setPosts} handleLogoutClick={handleLogoutClick}/>
       <div>
         <Routes>
-          <Route exact path="/" element={<DiscoverPage user={user} getComments={getComments} setComments={setComments} comments={comments} />} />
+          <Route exact path="/" element={<Gallery user={user} getComments={getComments} setComments={setComments} comments={comments} />} />
+          <Route exact path="/about" element={<About/>} />
           <Route
             exact
             path="/profile"

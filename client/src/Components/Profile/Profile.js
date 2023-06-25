@@ -1,9 +1,7 @@
 import React from 'react';
 import NewPost from './NewPost';
 import PostList from './PostList';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './Profile.css';
 
 function Profile({ comments, user, posts, setPosts, handleLogoutClick }) {
 
