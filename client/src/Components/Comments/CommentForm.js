@@ -57,9 +57,9 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
   }, [comments]);
 
   return (
-    <div className="flex flex-col h-full items-stretch space-y-3">
+    <div className="flex flex-col items-stretch">
       <h5 className="font-bold text-lg">Comments:</h5>
-      <div className="overflow-y-auto max-h-[215px] max-w-[315px] space-y-2 flex-grow" ref={commentSectionRef}>
+      <div className="overflow-y-auto max-h-[215px] max-w-[315px] flex-grow sm:max-w-xl" ref={commentSectionRef}>
         {comments.map((comment, index) => (
           <CommentCard
             key={comment.id}
@@ -69,7 +69,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
           />
         ))}
       </div>
-      <div className="mt-4">
+      <div className="mt-4 flex-grow">
         {error && <div>{error}</div>}
         <form onSubmit={handleComment} className="flex items-center space-x-2">
           <input

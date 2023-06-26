@@ -56,7 +56,7 @@ function Profile({ comments, user, posts, setPosts, handleLogoutClick }) {
                   </div>
                 </div>
               </div>
-              <div className="create-post">
+              <div class="flex items-center justify-center">
                 <NewPost user={user} setProfilePosts={setPosts} />
               </div>
               <div class="mt-1 py-5 border-t border-blueGray-200 text-center">

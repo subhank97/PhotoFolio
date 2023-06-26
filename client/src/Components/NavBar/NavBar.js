@@ -13,7 +13,7 @@ function NavBar({ user, handleLogoutClick }) {
     <div className="relative">
       <button 
         onClick={toggleNav} 
-        className="fixed top-2 right-4 z-50 p-2 bg-black text-gray-200 rounded-full border-2	 border-gray-200 hover:text-amber-300 hover:border-amber-300"
+        className="opacity-25	fixed top-2 right-4 z-50 p-2 bg-black text-gray-200 rounded-full border-2	 border-gray-200 hover:text-amber-300 hover:border-amber-300 hover:opacity-100"
       >
         {isNavOpen ? 'Collapse >>' : 'Expand <<'}
       </button>
