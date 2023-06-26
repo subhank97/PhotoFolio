@@ -1,9 +1,5 @@
 import React from 'react'
 
-const flowerImage = {
-    backgroundImage: "url('https://c0.wallpaperflare.com/preview/525/741/299/dark-flower-flower-arrangement-bouquet.jpg')",
-};
-
 const About = () => {
     return (
         <div class="min-h-screen flex bg-black text-white">

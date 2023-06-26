@@ -1,18 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
+  "./src/**/*.{js,jsx,ts,tsx}",
+],
+theme: {
     extend: {
-      width: {
-        'tiny': '0.25rem',
+      animation: {
+        'slideout': 'slideout 5s forwards'
       },
-      scale: {
-        'small': '1.01'
+      keyframes: {
+        slideout: {
+          '0%': { transform: 'translateX(-25%)' },
+          '100%': { transform: 'translateX(-75%)' }
+        }
       }
-    },
+    }
   },
+  variants: {},
   plugins: [],
 }
-

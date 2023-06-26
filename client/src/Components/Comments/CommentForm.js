@@ -79,7 +79,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
             value={newComment}
             placeholder="Add a comment..."
             autoComplete="off"
-            className="flex-grow border border-gray-300 rounded py-2 px-4 mr-2"
+            className="flex-grow border text-black border-gray-300 rounded py-2 px-4 mr-2"
           />
           <input type="submit" name="submit" className="py-1 px-2 bg-slate-950 text-white rounded cursor-pointer hover:bg-amber-500 transition-colors" value="Post" />
         </form>
