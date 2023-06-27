@@ -35,6 +35,7 @@ module ReactRailsApiProjectTemplate
 
     config.session_store :cookie_store, key: '_not_instagram_session', secure: Rails.env.production?, domain: 'https://photofolio-eq0d.onrender.com'
 
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
     # Configuration for the application, engines, and railties goes here.
     #
