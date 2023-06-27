@@ -33,7 +33,7 @@ function Card({ item, user, comments, addComment, id, setComments, getComments, 
 
   return (
     <div>
-      <img ref={imgRef} onLoad={handleImageLoad} className="py-1 hover:scale-small transition-all duration-800 cursor-pointer" src={loaded ? images : null} alt="random" onClick={() => setOpenModal(true)} />
+      <img ref={imgRef} onLoad={handleImageLoad} className="py-1 hover:opacity-50 transition-all duration-500 cursor-pointer" src={loaded ? images : null} alt="random" onClick={() => setOpenModal(true)} />
       <ModalCard
         getComments={getComments}
         setComments={setComments}

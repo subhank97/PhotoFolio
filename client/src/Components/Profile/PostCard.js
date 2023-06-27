@@ -6,7 +6,7 @@ function PostCard({ image, description, user, id, updatePosts }) {
 
   return (
     <div>
-      <img className="py-1 hover:scale-small transition-all duration-800 cursor-pointer" src={image} alt='random' onClick={() => setOpenModal(true)}></img>
+      <img className="py-1 hover:opacity-50 transition-all duration-500 cursor-pointer" src={image} alt='random' onClick={() => setOpenModal(true)}></img>
       <PostDetail
         id={id}
         user={user}
