@@ -2,12 +2,14 @@ class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def create
-    super do |resource|
-      if resource.persisted?
-        sign_in(resource) # Manually sign in the user
-        puts "User signed in? #{user_signed_in?}" # Debugging line
-        render json: resource and return # return the serialized User object
-      end
+    user = User.new(sign_up_params)
+
+    if user.save
+      sign_in(user)
+      puts "User signed in? #{user_signed_in?}"
+      render json: user
+    else
+      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
