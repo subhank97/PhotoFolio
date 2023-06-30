@@ -12,7 +12,7 @@ function NewPost({ user, setProfilePosts }) {
     const file = e.target.files[0];
     setImageFile(file);
     if (file) {
-      toast.warning("Image selected");
+      toast.success("Image selected");
     }
   };
 
@@ -62,28 +62,7 @@ function NewPost({ user, setProfilePosts }) {
   if (!user) {
     return <div>Please log in to create a new post.</div>;
   }
-  //   <div className="post-form">
-  //   <form onSubmit={handleSubmit}>
-  //     <div className="image-form">
-  //       <input id="image-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
-  //       <label htmlFor="image-upload" className="upload-button">
-  //         <span>Select image</span>
-  //       </label>
-  //     </div>
-  //     <div className="article-description">
-  //       <textarea
-  //         rows={3}
-  //         placeholder="Caption"
-  //         value={description}
-  //         onChange={(e) => setDescription(e.target.value)}
-  //       />
-  //     </div>
-  //     <div className="article-form-button">
-  //       <button type="submit">Create a Post</button>
-  //     </div>
-  //   </form>
-  //   <ToastContainer />
-  // </div>
+
   return (
     <form onSubmit={handleSubmit} class="w-full max-w-sm">
       <div class="flex items-center border-b border-amber-400 py-2">
@@ -98,7 +77,10 @@ function NewPost({ user, setProfilePosts }) {
           Post
         </button>
       </div>
-      <ToastContainer />
+      <ToastContainer
+        className="toast-container"
+        toastClassName="bg-yellow-400 text-black"
+      />
     </form>
   );
 }

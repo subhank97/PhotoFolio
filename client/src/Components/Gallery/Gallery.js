@@ -40,11 +40,11 @@ function Gallery({ user, comments, getComments, setComments }) {
 
   return (
     <>
-      {/* {allImagesLoaded ? null :
+      {allImagesLoaded ? null :
         <div className="fixed top-0 right-0 bottom-0 left-0 bg-gray-950 z-50 flex items-center justify-center">
           <div className="border-t-transparent border-solid animate-spin  rounded-full border-amber-400 border-8 h-64 w-64"></div>
         </div>
-      } */}
+      }
       <List data={data} user={user} comments={comments} addComment={addComment} setComments={setComments} getComments={getComments} onImageLoad={handleImageLoad} />
     </>
   );
