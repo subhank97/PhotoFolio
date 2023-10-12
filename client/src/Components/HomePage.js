@@ -112,8 +112,8 @@ function HomePage() {
       <NavBar user={user} setUser={setUser} setPosts={setPosts} handleLogoutClick={handleLogoutClick}/>
       <div>
         <Routes>
-          <Route exact path="/" element={<Gallery user={user} getComments={getComments} setComments={setComments} comments={comments} />} />
-          <Route exact path="/about" element={<About/>} />
+          <Route exact path="/gallery" element={<Gallery user={user} getComments={getComments} setComments={setComments} comments={comments} />} />
+          <Route exact path="/" element={<About/>} />
           <Route
             exact
             path="/profile"
