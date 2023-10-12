@@ -1,4 +1,4 @@
-import HomePage from './Components/HomePage';
+import About from './Components/About';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="w-full">
       <Routes>
-        <Route exact path='*' element={<HomePage />}></Route>
+        <Route exact path='*' element={<About />}></Route>
       </Routes>
     </div>
   );
