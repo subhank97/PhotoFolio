@@ -19,7 +19,7 @@ function NavBar({ user, handleLogoutClick }) {
       </button>
       <nav className={`${isNavOpen ? 'w-40' : 'w-0'} border-l-8 border-amber-300 text-lg font-bold right-0 space-y-3 fixed h-screen bg-black overflow-hidden transition-all duration-300 ease-in-out`} style={{ zIndex: '10' }}>
         <div className='mx-5 my-40'>
-          <NavLink to="/" className="text-white block hover:text-amber-300 transition-colors">
+          <NavLink to="/gallery" className="text-white block hover:text-amber-300 transition-colors">
             Gallery
           </NavLink>
           {user && (
@@ -27,7 +27,7 @@ function NavBar({ user, handleLogoutClick }) {
               Profile
             </NavLink>
           )}
-          <NavLink to="/about" className="pt-10 text-white block hover:text-amber-300 transition-colors">
+          <NavLink to="/" className="pt-10 text-white block hover:text-amber-300 transition-colors">
             About Us
           </NavLink>
           {user ? (
