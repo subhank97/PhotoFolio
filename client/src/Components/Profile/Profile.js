@@ -14,7 +14,7 @@ function Profile({ comments, user, posts, setPosts, handleLogoutClick }) {
   }
 
   return (
-    <main className="h-auto pt-10 bg-slate-950 text-white">
+    <main className="h-auto min-h-screen pt-10 bg-slate-950 text-white">
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col min-w-0 break-words bg-slate-900 w-full rounded-lg">
             <div className="px-6">
@@ -42,10 +42,10 @@ function Profile({ comments, user, posts, setPosts, handleLogoutClick }) {
                     <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span><span className="text-sm text-blueGray-400">Friends</span>
                   </div>
                   <div className="mr-4 p-3 text-center">
-                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{postCount}</span><span className="text-sm text-blueGray-400">Photos</span>
+                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{!postCount ? 0 : postCount}</span><span className="text-sm text-blueGray-400">Photos</span>
                   </div>
                   <div className="lg:mr-4 p-3 text-center">
-                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{commentCount}</span><span className="text-sm text-blueGray-400">Comments</span>
+                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{!commentCount ? 0 : commentCount}</span><span className="text-sm text-blueGray-400">Comments</span>
                   </div>
                 </div>
               </div>

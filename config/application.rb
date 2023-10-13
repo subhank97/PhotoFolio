@@ -33,7 +33,7 @@ module ReactRailsApiProjectTemplate
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
-    config.session_store :cookie_store, key: '_not_instagram_session', secure: Rails.env.production?, domain: 'https://photofolio-eq0d.onrender.com'
+    config.session_store :cookie_store, key: '_not_instagram_session',expire_after: 10.minutes ,secure: Rails.env.production?, domain: 'https://photofolio-eq0d.onrender.com'
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
