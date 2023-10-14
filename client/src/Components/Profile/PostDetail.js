@@ -24,21 +24,7 @@ export default function PostDetail({ open, onClose, image, description, user, id
         console.error('Error deleting post:', error);
       });
   }
-  //   <Modal isOpen={open} onRequestClose={onClose} className="post-detail-modalContainer" overlayClassName="post-detail-overlay">
-  //   <img src={image} alt="Post" />
-  //   <div className="post-detail-modalRight">
-  //     <button className="post-detail-closeBtn" onClick={onClose}>
-  //       X
-  //     </button>
-  //     <div className="post-detail-content">
-  //       <h4>{user.full_name}</h4>
-  //       <p>{description}</p>
-  //     </div>
-  // <div className="post-detail-update-button">
-  //   <button onClick={() => handleDeletePost(id)}>Delete Post</button>
-  // </div>
-  //   </div>
-  // </Modal>
+
   return (
     <Modal isOpen={open} onRequestClose={onClose} className="fixed inset-0 z-10 flex items-center justify-center h-full overflow-y-auto">
       <div className="fixed inset-0  bg-slate-900 bg-opacity-75 transition-opacity"></div>
@@ -49,14 +35,10 @@ export default function PostDetail({ open, onClose, image, description, user, id
             <div>
               <p onClick={onClose} className="absolute top-2 right-2 cursor-pointer">X</p>
               <h3 className="pb-5 text-base font-semibold leading-6" id="modal-title">{user.full_name}</h3>
-              <div className="text-center py-40 px">
-                <p className="text-sm text-gray-200">{description}</p>
-              </div>
-            </div>
-            <div className="w-fit border ml-52 mt-16 p-2 hover:bg-amber-400">
-              <button onClick={() => handleDeletePost(id)}>Delete Post</button>
+              <p className="text-center py-40 px text-sm text-gray-200">{description}</p>
             </div>
           </div>
+          <button className="w-fit absolute bottom-0 right-0 border p-2 mr-3 mb-3 hover:bg-amber-400" onClick={() => handleDeletePost(id)}>Delete Post</button>
         </div>
       </div>
     </Modal>

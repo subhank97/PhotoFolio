@@ -42,10 +42,10 @@ function Profile({ comments, user, posts, setPosts, handleLogoutClick }) {
                     <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span><span className="text-sm text-blueGray-400">Friends</span>
                   </div>
                   <div className="mr-4 p-3 text-center">
-                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{!postCount ? 0 : postCount}</span><span className="text-sm text-blueGray-400">Photos</span>
+                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{!postCount ? 0 : postCount}</span><span className="text-sm text-blueGray-400">{postCount === 1 ? "Post" : "Posts"}</span>
                   </div>
                   <div className="lg:mr-4 p-3 text-center">
-                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{!commentCount ? 0 : commentCount}</span><span className="text-sm text-blueGray-400">Comments</span>
+                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{!commentCount ? 0 : commentCount}</span><span className="text-sm text-blueGray-400">{commentCount === 1 ? "Comment" : "Comments"}</span>
                   </div>
                 </div>
               </div>
