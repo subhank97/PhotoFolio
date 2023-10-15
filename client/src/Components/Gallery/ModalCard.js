@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import CommentForm from '../Comments/CommentForm';
+import CommentForm from './Comments/CommentForm';
 import Heart from 'react-animated-heart';
 
 

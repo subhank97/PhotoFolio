@@ -69,7 +69,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
           />
         ))}
       </div>
-      <div className="mt-4 flex-grow">
+      <div className="mt-4 flex-grow absolute bottom-5">
         {error && <div>{error}</div>}
         <form onSubmit={handleComment} className="flex items-center space-x-2">
           <input

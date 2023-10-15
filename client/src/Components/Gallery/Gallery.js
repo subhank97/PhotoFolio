@@ -28,15 +28,16 @@ function Gallery({ user, comments, getComments, setComments }) {
       try {
         const response = await axios.get('https://picsum.photos/v2/list?page=2&limit=30');
         setData(response.data);
-        window.onload = () => {
-          setIsLoading(false);
-        }
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
   }, []);
+
+  console.log(data)
+
 
   return (
     <>

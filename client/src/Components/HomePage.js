@@ -1,12 +1,12 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Login from './Login';
+import Login from './Login/Login';
 import NavBar from './NavBar/NavBar';
-import Signup from './Signup';
+import Signup from './Login/Signup';
 import Profile from './Profile/Profile';
 import { useNavigate } from 'react-router-dom';
 import Gallery from './Gallery/Gallery';
-import About from './About';
+import About from './About/About';
 
 
 export const ThemeContext = createContext(null);
