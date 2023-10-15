@@ -58,7 +58,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
 
   return (
     <div className="flex flex-col items-stretch">
-      <h5 className="font-bold text-lg">Comments:</h5>
+      <h5 className="font-bold text-lg mb-2">Comments:</h5>
       <div className="overflow-y-auto max-h-[215px] max-w-[315px] flex-grow sm:max-w-xl" ref={commentSectionRef}>
         {comments.map((comment, index) => (
           <CommentCard
@@ -81,7 +81,7 @@ function CommentForm({ id, user, comments, addComment, setComments, getComments 
             autoComplete="off"
             className="flex-grow border text-black border-gray-300 rounded py-2 px-4 mr-2"
           />
-          <input type="submit" name="submit" className="py-1 px-2 bg-slate-950 text-white rounded cursor-pointer hover:bg-amber-500 transition-colors" value="Post" />
+          <input type="submit" name="submit" className=" px-2 bg-slate-950 text-white rounded cursor-pointer hover:bg-amber-500 transition-colors" value="Post" />
         </form>
       </div>
     </div>
