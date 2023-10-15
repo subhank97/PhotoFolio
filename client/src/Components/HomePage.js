@@ -45,17 +45,24 @@ function HomePage() {
     fetch("/current", {
       credentials: 'include',
       headers: {
-        'Access-Control-Allow-Credentials': 'true'
-      }
+        'Access-Control-Allow-Credentials': 'true',
+      },
     })
       .then((res) => {
-        if (res.ok) {
+        if (res.status === 401) {
+          navigate("/login")
+          console.log('User not authenticated. Please log in.');
+        } else if (res.ok) {
           res.json().then((user) => {
             setUser(user);
           });
         }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
   }, []);
+
 
 
   function handleLogin(newUser) {
@@ -109,11 +116,11 @@ function HomePage() {
 
   return (
     <div className='w-full bg-slate-950'>
-      <NavBar user={user} setUser={setUser} setPosts={setPosts} handleLogoutClick={handleLogoutClick}/>
+      <NavBar user={user} setUser={setUser} setPosts={setPosts} handleLogoutClick={handleLogoutClick} />
       <div>
         <Routes>
           <Route exact path="/gallery" element={<Gallery user={user} getComments={getComments} setComments={setComments} comments={comments} />} />
-          <Route exact path="/" element={<About/>} />
+          <Route exact path="/" element={<About />} />
           <Route
             exact
             path="/profile"

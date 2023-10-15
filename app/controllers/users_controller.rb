@@ -13,9 +13,6 @@ class UsersController < ApplicationController
       render json: current_user, status: :ok
     else
       Rails.logger.error "No current user"
-      Rails.logger.debug "Session: #{session.inspect}" # Debugging line
-      Rails.logger.debug "Cookies: #{cookies.inspect}" # Debugging line
-      Rails.logger.debug "Headers: #{request.headers.inspect}" # Debugging line
       render json: { error: 'Not authorized' }, status: :unauthorized
     end
   end
